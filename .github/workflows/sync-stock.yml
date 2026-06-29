@@ -1,0 +1,45 @@
+name: Sync stock from Instagram
+
+# Reads recent Instagram captions (Graph API) and updates assets/data/stock.json.
+# Safe to enable before credentials exist: with no IG_TOKEN/IG_USER_ID secrets the
+# sync script logs a notice and exits 0, so the workflow is green and changes nothing.
+
+on:
+  schedule:
+    - cron: '17 */6 * * *' # every 6 hours, offset off the hour
+  workflow_dispatch: {} # allow manual "Run workflow"
+
+permissions:
+  contents: write # needed to commit the refreshed stock.json
+
+concurrency:
+  group: sync-stock
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync stock.json from Instagram captions
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: node scripts/sync-instagram-stock.mjs
+
+      - name: Commit & push if changed
+        run: |
+          if [ -n "$(git status --porcelain assets/data/stock.json)" ]; then
+            git config user.name "maharaja-stock-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add assets/data/stock.json
+            git commit -m "chore(stock): sync availability from Instagram"
+            git push
+          else
+            echo "stock.json unchanged — nothing to commit."
+          fi

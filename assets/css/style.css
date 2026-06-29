@@ -3603,6 +3603,62 @@ ol {
     transform: translateY(0);
 }
 
+/* Stock availability ribbon (Disponível / Esgotado) */
+.product-media,
+.md-exhibit-product-media,
+.md-product-main-media {
+    position: relative;
+}
+
+.md-stock-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--md-ivory);
+    box-shadow: 0 8px 20px rgba(2, 31, 13, 0.28);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    pointer-events: none;
+}
+
+.md-stock-badge::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+}
+
+.md-stock-badge.is-in-stock {
+    background: rgba(6, 56, 25, 0.92);
+    color: #7fe0a3;
+}
+
+.md-stock-badge.is-sold-out {
+    background: rgba(166, 70, 45, 0.95);
+    color: #ffd9cb;
+}
+
+.is-sold-out .product-media img,
+.is-sold-out .md-exhibit-product-media img,
+.is-sold-out .md-product-main-media img {
+    filter: grayscale(0.5) brightness(0.94);
+    opacity: 0.82;
+    transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
 .md-footer {
     background: var(--md-green-deep);
     color: var(--md-ivory);

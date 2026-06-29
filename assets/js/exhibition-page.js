@@ -76,7 +76,7 @@
         if (!grid) return;
         grid.innerHTML = (page.products || []).map(productBySlug).filter(Boolean).map(function (product) {
             return [
-                '<article class="md-exhibit-product">',
+                '<article class="md-exhibit-product" data-slug="' + product.slug + '">',
                 '<a class="md-exhibit-product-media" href="../produto/' + product.slug + '.html"><img src="' + asset(product.image) + '" alt="' + (product.alt || product.title) + '"></a>',
                 '<div>',
                 '<span>' + product.badge + '</span>',

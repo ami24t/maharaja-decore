@@ -1,0 +1,36 @@
+{
+  "_comment": "Maps Instagram post captions to catalog products for the stock sync cron. Matching is accent- and case-insensitive. A post is tied to a product when its caption contains ANY of that product's keywords; availability is then read from the markers below. If a matched caption has neither marker, the product's current stock is left unchanged (never guessed).",
+  "soldOutMarkers": [
+    "esgotado",
+    "esgotada",
+    "esgotados",
+    "esgotadas",
+    "vendido",
+    "vendida",
+    "indisponivel",
+    "sold out",
+    "soldout",
+    "ultima peca vendida"
+  ],
+  "inStockMarkers": [
+    "disponivel",
+    "disponiveis",
+    "em estoque",
+    "novidade",
+    "novidades",
+    "chegou",
+    "chegaram",
+    "reposto",
+    "de volta"
+  ],
+  "products": {
+    "ganesha-de-resina": ["ganesha"],
+    "fonte-de-lakshmi": ["lakshmi", "fonte de lakshmi"],
+    "buda-de-bali": ["buda", "buddha", "bali"],
+    "elefantes-de-madeira": ["elefante", "elefantes"],
+    "banco-pintado-a-mao": ["banco pintado", "banquinho", "banco de madeira"],
+    "luminaria-turca": ["luminaria turca", "luminaria", "turca"],
+    "padmini-incenso-dhoop": ["incenso", "padmini", "dhoop"],
+    "pecas-decorativas": ["peca decorativa", "pecas decorativas", "objeto decorativo"]
+  }
+}

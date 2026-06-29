@@ -37,8 +37,50 @@ Abra http://localhost:8000
 - Facebook: https://www.facebook.com/maharajadecor/
 - Cenas editoriais em `assets/img/maharaja/editorial/`: imagens geradas para direção de arte, não fotos publicadas pela marca
 
+## Estoque (Disponível / Esgotado) e sincronização com Instagram
+
+O site mostra um selo **Disponível / Esgotado** em cada peça (vitrine da home,
+páginas de produto e cards de coleção/ambiente). O estado vem de um único arquivo:
+
+- `assets/data/stock.json` — fonte da verdade: `slug → "in_stock" | "sold_out"`.
+  Pode ser editado à mão a qualquer momento; o site lê em tempo real.
+- `assets/js/stock.js` — busca o `stock.json` e pinta o selo (falha de forma
+  segura: se o arquivo faltar, nada é alterado).
+
+### Atualização automática a partir do Instagram (cron)
+
+> **Importante:** o Instagram **não** expõe estoque/inventário. A sincronização
+> lê o **texto das legendas** dos posts via a **Instagram Graph API** oficial e
+> deduz a disponibilidade por convenção. É um heurístico, não um feed de estoque.
+> Não há scraping da página pública (frágil e contra os termos do Instagram).
+
+Peças do cron:
+
+- `.github/workflows/sync-stock.yml` — roda a cada 6h (e por acionamento manual).
+- `scripts/sync-instagram-stock.mjs` — busca os posts, lê as legendas e reescreve
+  `stock.json`; se mudou, o workflow faz commit/push (redeploy).
+- `scripts/stock-map.json` — convenção editável: palavras-chave que ligam um post
+  a uma peça, e marcadores como `esgotado` / `disponível`.
+
+**Para ativar (3 passos):**
+
+1. **Conta + token:** o @maharaja_decor precisa ser uma conta **Business** ligada a
+   uma Página do Facebook. Crie um app no Meta for Developers, conceda
+   `instagram_basic` + `pages_show_list` e gere um **token de longa duração**.
+   Anote o **IG user id** (numérico) da conta Business.
+2. **Secrets no GitHub:** em *Settings → Secrets and variables → Actions*, adicione
+   `IG_TOKEN` e `IG_USER_ID`.
+3. **Convenção de legenda:** ajuste `scripts/stock-map.json` ao vocabulário real da
+   loja. Convenção: um post cuja legenda cite a peça (palavra-chave) **e** contenha
+   `esgotado`/`vendido` marca **Esgotado**; com `disponível`/`novidade` marca
+   **Disponível**. Sem marcador, o estado atual é mantido (nunca chuta).
+
+Sem os secrets, o workflow roda verde e **não altera nada** — você pode editar o
+`stock.json` manualmente nesse meio-tempo.
+
 ## Notas
 
 - O formulário é apenas protótipo e mostra confirmação na página.
-- Valores e estoque são apresentados como "sob consulta" para não inventar preços.
+- Valores seguem como "sob consulta" para não inventar preços; a disponibilidade
+  agora aparece como Disponível/Esgotado (ver seção de Estoque acima).
 - Em produção, o próximo passo natural é ligar cada produto ao WhatsApp, estoque real, frete por CEP, retirada na loja, Pix/cartão e Instagram Shopping.
