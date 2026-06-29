@@ -13,3 +13,9 @@ dist/
 # Editor / local
 .vscode/
 *.local
+
+# Secrets — never commit API keys (e.g. MESHY_API_KEY)
+.env
+.env.*
+*.env
+scripts/.env
