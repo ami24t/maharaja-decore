@@ -897,14 +897,103 @@ ol {
 /* ******************************
 :: 6.0 HERO
 ****************************** */
+/* ===== Hero: live 3D sculpture centerpiece ===== */
+.md-hero-grid {
+    align-items: center;
+    display: grid;
+    gap: 48px;
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+}
+
+.md-hero-stage {
+    margin-inline: auto;
+    max-width: 540px;
+    position: relative;
+    width: 100%;
+}
+
+.md-hero-stage-glow {
+    animation: heroGlow 6s ease-in-out infinite alternate;
+    background: radial-gradient(circle at 50% 44%, rgba(241, 197, 107, 0.42) 0%, rgba(241, 197, 107, 0.13) 38%, transparent 70%);
+    filter: blur(6px);
+    inset: 4% 4% 8%;
+    position: absolute;
+    z-index: 0;
+}
+
+@keyframes heroGlow {
+    from { opacity: 0.72; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1.04); }
+}
+
+.md-hero-poster {
+    border-radius: 22px;
+    display: block;
+    filter: drop-shadow(0 30px 52px rgba(2, 31, 13, 0.55));
+    height: auto;
+    object-fit: contain;
+    opacity: 1;
+    pointer-events: none;
+    position: relative;
+    transition: opacity 0.9s ease;
+    width: 100%;
+    z-index: 2;
+}
+
+.md-hero-stage.is-loaded .md-hero-poster {
+    opacity: 0;
+}
+
+/* The model stays at opacity 1 always (model-viewer pauses rendering if it
+   ever sees itself invisible) — the poster on top fades out to reveal it. */
+.md-hero-model {
+    background: radial-gradient(circle at 50% 46%, #0c4a24 0%, #073a1b 42%, #052e15 100%);
+    border-radius: 24px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.md-hero-stage-hint {
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    background: rgba(2, 31, 13, 0.5);
+    border: 1px solid rgba(241, 197, 107, 0.32);
+    border-radius: 999px;
+    bottom: 3%;
+    color: var(--md-ivory);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    gap: 7px;
+    left: 50%;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    padding: 7px 14px;
+    pointer-events: none;
+    position: absolute;
+    transform: translateX(-50%);
+    transition: opacity 0.6s ease 0.4s;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+}
+
+.md-hero-stage.is-loaded .md-hero-stage-hint {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .md-hero-stage-glow { animation: none; }
+}
+
 .md-hero {
-    background-image: linear-gradient(90deg, rgba(2, 31, 13, 0.9) 0%, rgba(6, 56, 25, 0.7) 47%, rgba(2, 31, 13, 0.22) 100%), url('../img/maharaja/editorial/living-ganesha.jpg');
-    background-position: center;
-    background-size: cover;
-    animation: heroScene 18s ease-in-out infinite alternate;
-    isolation: isolate;
+    background:
+        radial-gradient(1100px 640px at 75% 42%, rgba(13, 85, 40, 0.55) 0%, transparent 62%),
+        radial-gradient(900px 520px at 10% 16%, rgba(241, 197, 107, 0.10) 0%, transparent 55%),
+        linear-gradient(158deg, #073a1b 0%, #04230f 52%, #062f14 100%);
     min-height: 82vh;
-    overflow: hidden;
     padding: 112px 0 76px;
 }
 
@@ -3670,8 +3759,8 @@ ol {
     }
 
     @keyframes mdPageIn {
-        from { opacity: 0; transform: translate3d(0, 14px, 0); }
-        to { opacity: 1; transform: none; }
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
     /* Page exit — motion.js adds md-page-out before navigating */
@@ -3718,7 +3807,7 @@ ol {
 }
 
 .md-product-main-media.is-3d .md-3d-note {
-    display: none;
+    display: inline-flex;
 }
 
 .md-3d-toggle {
@@ -3756,6 +3845,7 @@ ol {
 }
 
 .md-3d-note {
+    display: none;
     position: absolute;
     left: 14px;
     bottom: 14px;

@@ -65,8 +65,17 @@
     }
 
     .md-hero {
-        min-height: 700px;
-        padding: 108px 0 94px;
+        min-height: auto;
+        padding: 104px 0 80px;
+    }
+
+    .md-hero-grid {
+        gap: 36px;
+        grid-template-columns: 1fr;
+    }
+
+    .md-hero-stage {
+        max-width: 400px;
     }
 
     .md-hero-logo {

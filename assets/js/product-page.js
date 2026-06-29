@@ -153,12 +153,12 @@
         toggle.innerHTML = '<i class="fas fa-cube" aria-hidden="true"></i> Ver em 3D';
         media.appendChild(toggle);
 
-        if (product.modelPreview) {
-            var note = document.createElement('span');
-            note.className = 'md-3d-note';
-            note.textContent = 'Modelo 3D de exemplo';
-            media.appendChild(note);
-        }
+        // AI-reconstructed models are an illustration, not an exact replica of
+        // the hand-painted piece — always label them so customers aren't misled.
+        var note = document.createElement('span');
+        note.className = 'md-3d-note';
+        note.textContent = product.modelPreview ? 'Modelo 3D de exemplo' : 'Modelo 3D ilustrativo';
+        media.appendChild(note);
 
         var viewer = null;
         var showing = false;
