@@ -248,6 +248,66 @@
         });
     }
 
+    function renderFooter() {
+        return [
+            '<div class="md-footer-grid">',
+            '<div>',
+            '<a class="md-footer-brand" href="' + homeHash('#home') + '"><span class="md-brand-seal" aria-hidden="true">M</span><span>Maharaja Decor</span></a>',
+            '<p>Loja de decoração, presentes, artesanato e moda em Alto Paraíso de Goiás. Um pedacinho da Índia na Chapada dos Veadeiros.</p>',
+            '</div>',
+            '<div>',
+            '<h3>Loja</h3>',
+            '<ul>',
+            '<li><a href="' + pageUrl('colecoes/estatuas.html') + '">Estátuas</a></li>',
+            '<li><a href="' + pageUrl('colecoes/sagrado.html') + '">Sagrado</a></li>',
+            '<li><a href="' + homeHash('#collection') + '">Peças</a></li>',
+            '<li><a href="' + homeHash('#store') + '">Alto Paraíso</a></li>',
+            '</ul>',
+            '</div>',
+            '<div>',
+            '<h3>Ambientes</h3>',
+            '<ul>',
+            '<li><a href="' + pageUrl('ambientes/sala.html') + '">Sala</a></li>',
+            '<li><a href="' + pageUrl('ambientes/jardim.html') + '">Jardim</a></li>',
+            '<li><a href="' + pageUrl('ambientes/piscina.html') + '">Piscina</a></li>',
+            '<li><a href="' + pageUrl('ambientes/entrada.html') + '">Entrada</a></li>',
+            '</ul>',
+            '</div>',
+            '<div>',
+            '<h3>Redes</h3>',
+            '<ul>',
+            '<li><a href="https://www.instagram.com/maharaja_decor/" target="_blank" rel="noopener">Instagram</a></li>',
+            '<li><a href="https://www.facebook.com/maharajadecor/" target="_blank" rel="noopener">Facebook</a></li>',
+            '<li><a href="https://www.maharajadecor.com.br/" target="_blank" rel="noopener">Site oficial</a></li>',
+            '</ul>',
+            '</div>',
+            '<div>',
+            '<h3>Contato</h3>',
+            '<ul>',
+            '<li>Av. Ary Valadão, 1383</li>',
+            '<li><a href="https://wa.me/5561991334423" target="_blank" rel="noopener">(61) 99133-4423</a></li>',
+            '<li><a href="mailto:sushant@maharajadecor.com.br">sushant@maharajadecor.com.br</a></li>',
+            '</ul>',
+            '</div>',
+            '</div>',
+            '<div class="md-footer-bottom">',
+            '<span>&copy; <span id="mdYear"></span> Maharaja Decor. Todos os direitos reservados.</span>',
+            '<span>Conteúdo em pt-BR inspirado na curadoria pública da marca.</span>',
+            '</div>'
+        ].join('');
+    }
+
+    // Subpages ship a minimal footer (just the copyright bar). The full index
+    // page already carries the rich five-column footer, so only inject where the
+    // grid is absent to avoid duplicating it on the home page.
+    function setupFooter() {
+        var container = document.querySelector('.md-footer .container');
+        if (!container || container.querySelector('.md-footer-grid')) return;
+        container.innerHTML = renderFooter();
+        var year = document.getElementById('mdYear');
+        if (year) year.textContent = new Date().getFullYear();
+    }
+
     function setupNav() {
         var header = document.querySelector('.navbar .container.header');
         if (!header) return;
@@ -296,11 +356,14 @@
         window.addEventListener('hashchange', function () { setActiveState(header); });
     }
 
-    if (document.querySelector('.navbar .container.header')) {
-        setupNav();
-    } else if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setupNav);
+    function init() {
+        if (document.querySelector('.navbar .container.header')) setupNav();
+        setupFooter();
+    }
+
+    if (document.querySelector('.navbar .container.header') || document.readyState !== 'loading') {
+        init();
     } else {
-        setupNav();
+        document.addEventListener('DOMContentLoaded', init);
     }
 }());
