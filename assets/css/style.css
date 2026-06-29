@@ -947,8 +947,7 @@ ol {
 /* The model stays at opacity 1 always (model-viewer pauses rendering if it
    ever sees itself invisible) — the poster on top fades out to reveal it. */
 .md-hero-model {
-    background: radial-gradient(circle at 50% 46%, #0c4a24 0%, #073a1b 42%, #052e15 100%);
-    border-radius: 24px;
+    background-color: transparent;
     left: 0;
     position: absolute;
     top: 0;
@@ -986,6 +985,105 @@ ol {
 
 @media (prefers-reduced-motion: reduce) {
     .md-hero-stage-glow { animation: none; }
+}
+
+/* Album 3D switcher: editorial scene backdrop + thumbnail strip */
+.md-hero { position: relative; }
+
+.md-hero-scene {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.md-hero-scene-layer {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.md-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.md-hero-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.md-hero-thumb {
+    background: rgba(2, 31, 13, 0.42);
+    border: 1.5px solid rgba(241, 197, 107, 0.22);
+    border-radius: 16px;
+    cursor: pointer;
+    flex: 0 0 auto;
+    height: 70px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    width: 70px;
+}
+
+.md-hero-thumb img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.74;
+    transition: opacity 0.25s ease;
+    width: 100%;
+}
+
+.md-hero-thumb:hover {
+    border-color: rgba(241, 197, 107, 0.6);
+    transform: translateY(-3px);
+}
+
+.md-hero-thumb:hover img { opacity: 1; }
+
+.md-hero-thumb.is-active {
+    border-color: var(--md-gold);
+    box-shadow: 0 0 0 1px var(--md-gold), 0 12px 26px rgba(2, 31, 13, 0.42);
+}
+
+.md-hero-thumb.is-active img { opacity: 1; }
+
+.md-hero-stage-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    left: 4px;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    z-index: 3;
+}
+
+.md-hero-stage-caption strong {
+    color: var(--md-ivory);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.05;
+    text-shadow: 0 2px 16px rgba(2, 31, 13, 0.7);
+}
+
+.md-hero-stage-caption span {
+    color: var(--md-gold);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .md-hero {
