@@ -1,0 +1,703 @@
+@media (max-width: 1199px) {
+    header .navbar-expand .navbar-nav.toggle {
+        display: flex;
+    }
+
+    .md-site-nav {
+        display: none;
+    }
+
+    .md-nav-drawer-toggle {
+        display: inline-flex;
+    }
+
+    .md-exhibition-menu-button {
+        display: inline-flex;
+    }
+
+    header .navbar-expand .navbar-nav.items {
+        display: none;
+    }
+
+    .md-category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md-shop-toolbar {
+        grid-template-columns: 1fr;
+    }
+
+    .md-filter-group {
+        justify-content: flex-start;
+    }
+
+    .md-product-grid,
+    .md-story-grid,
+    .md-related-grid,
+    .md-exhibit-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md-recipe-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md-collection-editorial ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 991px) {
+    h1 {
+        font-size: 56px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    .navbar {
+        min-height: 82px;
+    }
+
+    .navbar-nav.action {
+        display: none;
+    }
+
+    .md-hero {
+        min-height: 700px;
+        padding: 108px 0 94px;
+    }
+
+    .md-hero-logo {
+        max-height: 168px;
+        width: 320px;
+    }
+
+    .md-trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md-trust-grid div:nth-child(2) {
+        border-right: 0;
+    }
+
+    .md-section {
+        padding: 76px 0;
+    }
+
+    .md-section-heading-split,
+    .md-arrivals-shell,
+    .md-room-studio,
+    .md-category-method,
+    .md-collection-editorial,
+    .md-inspiration-atlas,
+    .md-store-experience,
+    .md-product-detail-layout,
+    .md-exhibition-layout,
+    .md-platform-grid,
+    .md-consultation-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .md-arrivals-shell {
+        margin-top: -24px;
+    }
+
+    .md-curation-panel,
+    .md-editorial {
+        align-self: stretch;
+    }
+
+    .md-store-facts {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .md-composition-stage {
+        min-height: 600px;
+    }
+
+    .md-store-hero {
+        min-height: 440px;
+    }
+
+    .md-product-gallery {
+        position: static;
+    }
+
+    .md-product-story-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md-exhibition-media {
+        min-height: 560px;
+    }
+
+    .md-exhibition-related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md-product-story-grid article {
+        grid-column: span 1;
+    }
+
+    .md-consultation-copy {
+        position: static;
+    }
+
+    .md-footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md-room-feature {
+        min-height: 620px;
+    }
+
+    .md-room-deck,
+    .md-album-notes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .product-card-featured {
+        grid-column: span 2;
+    }
+
+    .product-card-featured .product-body {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card-featured .product-foot,
+    .product-card-featured .product-actions {
+        grid-column: 1;
+        min-width: 0;
+    }
+
+    .product-card-featured .product-foot {
+        padding-top: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 42px;
+    }
+
+    h2 {
+        font-size: 34px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    .md-brand {
+        min-width: 0;
+    }
+
+    .md-brand-seal {
+        height: 46px;
+        width: 46px;
+    }
+
+    .md-brand-name {
+        font-size: 24px;
+    }
+
+    .md-brand-line {
+        display: none;
+    }
+
+    .md-hero {
+        min-height: 640px;
+        padding: 100px 0 98px;
+    }
+
+    .md-hero p {
+        font-size: 17px;
+    }
+
+    .md-hero-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .md-hero-metrics span {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+        min-height: 62px;
+        min-width: 0;
+    }
+
+    .md-hero-metrics small {
+        overflow-wrap: anywhere;
+    }
+
+    .md-hero-rail {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md-hero-rail span:nth-child(2) {
+        border-right: 0;
+    }
+
+    .button-group,
+    .product-actions,
+    .form-row-two {
+        grid-template-columns: 1fr;
+    }
+
+    .button-group {
+        align-items: stretch;
+        display: grid;
+    }
+
+    .md-btn {
+        width: 100%;
+    }
+
+    .md-category-grid,
+    .md-product-grid,
+    .md-story-grid,
+    .md-related-grid,
+    .md-exhibit-product-grid,
+    .md-exhibition-related-grid,
+    .md-category-method,
+    .md-recipe-grid,
+    .md-store-facts,
+    .md-roadmap {
+        grid-template-columns: 1fr;
+    }
+
+    .md-collection-editorial ul {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card-featured {
+        grid-column: span 1;
+    }
+
+    .product-card-featured .product-media {
+        aspect-ratio: 1 / 1;
+    }
+
+    .md-product-detail-hero {
+        padding: 122px 0 58px;
+    }
+
+    .md-exhibition-hero {
+        padding: 122px 0 58px;
+    }
+
+    .md-exhibition-media {
+        min-height: 520px;
+    }
+
+    .md-exhibition-media-caption,
+    .md-exhibition-panel {
+        padding: 28px;
+    }
+
+    .md-exhibition-media-caption h1 {
+        font-size: 42px;
+    }
+
+    .md-exhibit-product {
+        grid-template-columns: 1fr;
+    }
+
+    .md-exhibit-product-media {
+        min-height: 300px;
+    }
+
+    .md-product-detail-copy {
+        padding: 28px;
+    }
+
+    .md-product-detail-copy h1 {
+        font-size: 44px;
+    }
+
+    .md-product-story-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .md-product-story-grid article,
+    .md-product-story-grid aside {
+        min-height: 0;
+    }
+
+    .md-arrivals-rail {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md-room-feature {
+        min-height: 560px;
+    }
+
+    .md-room-feature::after {
+        background: linear-gradient(180deg, rgba(2, 31, 13, 0.18) 0%, rgba(2, 31, 13, 0.88) 100%);
+    }
+
+    .md-room-feature-copy {
+        padding: 28px;
+    }
+
+    .md-room-feature-copy h3 {
+        font-size: 36px;
+    }
+
+    .md-room-card {
+        grid-template-columns: 92px minmax(0, 1fr);
+        min-height: 118px;
+    }
+
+    .md-room-card strong {
+        font-size: 22px;
+    }
+
+    .md-shop-toolbar {
+        position: static;
+    }
+
+    .md-shop-summary {
+        align-items: flex-start;
+        display: grid;
+        gap: 8px;
+    }
+
+    .md-category-card {
+        aspect-ratio: auto;
+        min-height: 330px;
+        width: 100%;
+    }
+
+    .md-category-card-featured strong {
+        font-size: 30px;
+    }
+
+    .md-category-card p {
+        font-size: 13px;
+    }
+
+    .md-composition-stage {
+        min-height: 540px;
+    }
+
+    .md-store-hero {
+        min-height: 420px;
+    }
+
+    .look-tag {
+        font-size: 12px;
+        min-height: 36px;
+    }
+
+    .tag-one {
+        left: 6%;
+        top: 18%;
+    }
+
+    .tag-two {
+        bottom: 46%;
+        left: 8%;
+    }
+
+    .tag-three {
+        right: 6%;
+        top: 31%;
+    }
+
+    .md-stage-caption {
+        max-width: none;
+        padding: 28px;
+    }
+
+    .md-stage-caption h3 {
+        font-size: 34px;
+    }
+
+    .md-curation-panel,
+    .md-editorial,
+    .md-store-hero div,
+    .md-consultation-copy,
+    .md-form {
+        padding: 24px;
+    }
+
+    .modal-dialog {
+        max-width: none;
+        width: 100%;
+    }
+
+    .md-footer-grid,
+    .md-footer-bottom {
+        grid-template-columns: 1fr;
+    }
+
+    .md-footer-bottom {
+        align-items: flex-start;
+        display: grid;
+    }
+}
+
+@media (max-width: 575px) {
+    h1 {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    .container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .navbar {
+        min-height: 74px;
+    }
+
+    .md-nav-drawer {
+        grid-template-columns: 1fr;
+    }
+
+    .md-nav-backdrop {
+        display: none;
+    }
+
+    .md-nav-panel {
+        border-left: 0;
+        width: 100%;
+    }
+
+    .md-nav-panel-head,
+    .md-drawer-main {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .md-drawer-quick {
+        grid-template-columns: 1fr;
+    }
+
+    .md-hero {
+        min-height: 590px;
+        padding-top: 92px;
+    }
+
+    .md-hero-logo {
+        max-height: 128px;
+        width: 246px;
+    }
+
+    .md-arrivals-shell {
+        padding: 12px;
+    }
+
+    .md-arrivals-copy {
+        padding: 22px;
+    }
+
+    .md-arrivals-rail {
+        grid-template-columns: 1fr;
+    }
+
+    .md-room-deck,
+    .md-album-notes {
+        grid-template-columns: 1fr;
+    }
+
+    .md-room-feature {
+        min-height: 520px;
+    }
+
+    .md-room-feature-copy {
+        padding: 22px;
+    }
+
+    .md-room-feature-copy h3 {
+        font-size: 31px;
+    }
+
+    .md-room-feature-copy p {
+        font-size: 15px;
+    }
+
+    .md-room-feature-copy .md-btn {
+        width: 100%;
+    }
+
+    .md-product-main-media {
+        aspect-ratio: 4 / 5;
+    }
+
+    .md-product-thumbs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .md-exhibition-media {
+        min-height: 500px;
+    }
+
+    .md-exhibition-media::after {
+        background: linear-gradient(180deg, rgba(2, 31, 13, 0.06), rgba(2, 31, 13, 0.88));
+    }
+
+    .md-exhibition-media-caption h1 {
+        font-size: 34px;
+    }
+
+    .md-exhibition-media-caption p,
+    .md-exhibition-panel p {
+        font-size: 15px;
+    }
+
+    .md-exhibition-panel h2 {
+        font-size: 30px;
+    }
+
+    .md-exhibition-steps article {
+        grid-template-columns: 38px minmax(0, 1fr);
+    }
+
+    .md-exhibition-steps span {
+        height: 38px;
+        width: 38px;
+    }
+
+    .md-exhibit-product-media {
+        min-height: 260px;
+    }
+
+    .md-exhibit-product > div {
+        padding: 22px;
+    }
+
+    .md-product-detail-copy {
+        padding: 22px;
+    }
+
+    .md-product-detail-copy h1 {
+        font-size: 36px;
+    }
+
+    .md-product-detail-copy > p {
+        font-size: 16px;
+    }
+
+    .md-product-price-row strong {
+        font-size: 24px;
+    }
+
+    .md-composition-stage {
+        min-height: 500px;
+    }
+
+    .md-composition-stage::after {
+        background: linear-gradient(180deg, rgba(2, 31, 13, 0.1) 0%, rgba(2, 31, 13, 0.86) 100%);
+    }
+
+    .md-stage-caption h3 {
+        font-size: 30px;
+    }
+
+    .md-store-hero {
+        min-height: 420px;
+    }
+
+    .md-store-hero div {
+        padding-bottom: 58px;
+    }
+
+    .md-store-hero h3 {
+        font-size: 31px;
+    }
+
+    .md-story-grid {
+        gap: 16px;
+    }
+
+    .md-album-notes div {
+        min-height: 0;
+    }
+
+    .md-recipe-grid article {
+        min-height: 0;
+    }
+
+    .md-recipe-grid strong {
+        font-size: 23px;
+    }
+
+    .md-layer-stack div {
+        grid-template-columns: 38px minmax(0, 1fr);
+        padding: 14px;
+    }
+
+    .md-layer-stack i {
+        height: 38px;
+        width: 38px;
+    }
+
+    .md-section {
+        padding: 58px 0;
+    }
+
+    .md-section-heading {
+        margin-bottom: 30px;
+    }
+
+    .md-shop-toolbar {
+        padding: 10px;
+    }
+
+    .md-filter-group {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .filter-btn {
+        width: 100%;
+    }
+
+    .md-trust-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .md-trust-grid div {
+        border-bottom: 1px solid rgba(255, 248, 236, 0.18);
+        border-right: 0;
+    }
+
+    .md-trust-grid div:last-child {
+        border-bottom: 0;
+    }
+
+    .md-toast {
+        bottom: 82px;
+        left: 18px;
+        right: 18px;
+        text-align: center;
+    }
+
+    .md-floating-whatsapp {
+        bottom: 18px;
+        border-radius: 50%;
+        height: 48px;
+        justify-content: center;
+        left: 18px;
+        min-height: 48px;
+        padding: 0;
+        width: 48px;
+    }
+
+    .md-floating-whatsapp span {
+        display: none;
+    }
+}
