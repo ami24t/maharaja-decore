@@ -122,6 +122,91 @@
         link.href = 'https://wa.me/5561991334423?text=' + encodeURIComponent(message);
     }
 
+    var MODEL_VIEWER_SRC = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';
+    var modelLibPromise = null;
+
+    function loadModelViewer() {
+        if (modelLibPromise) return modelLibPromise;
+        modelLibPromise = new Promise(function (resolve, reject) {
+            if (window.customElements && customElements.get('model-viewer')) { resolve(); return; }
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = MODEL_VIEWER_SRC;
+            script.onload = function () { customElements.whenDefined('model-viewer').then(resolve, resolve); };
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+        return modelLibPromise;
+    }
+
+    // Lazy 3D viewer: only loads the library (and model) when the visitor asks
+    // for it, so product pages stay light and keep their Lighthouse scores.
+    function setupModelViewer() {
+        if (!product || !product.model) return;
+        var media = document.querySelector('.md-product-main-media');
+        var img = byId('productHeroImage');
+        if (!media || !img) return;
+
+        var toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'md-3d-toggle';
+        toggle.innerHTML = '<i class="fas fa-cube" aria-hidden="true"></i> Ver em 3D';
+        media.appendChild(toggle);
+
+        if (product.modelPreview) {
+            var note = document.createElement('span');
+            note.className = 'md-3d-note';
+            note.textContent = 'Modelo 3D de exemplo';
+            media.appendChild(note);
+        }
+
+        var viewer = null;
+        var showing = false;
+
+        function showModel() {
+            toggle.disabled = true;
+            toggle.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Carregando 3D…';
+            loadModelViewer().then(function () {
+                if (!viewer) {
+                    viewer = document.createElement('model-viewer');
+                    viewer.className = 'md-product-modelviewer';
+                    viewer.setAttribute('src', asset(product.model));
+                    viewer.setAttribute('poster', img.currentSrc || img.src);
+                    viewer.setAttribute('alt', 'Modelo 3D de ' + (product.title || 'peça'));
+                    viewer.setAttribute('camera-controls', '');
+                    viewer.setAttribute('auto-rotate', '');
+                    viewer.setAttribute('auto-rotate-delay', '0');
+                    viewer.setAttribute('rotation-per-second', '18deg');
+                    viewer.setAttribute('interaction-prompt', 'auto');
+                    viewer.setAttribute('shadow-intensity', '1');
+                    viewer.setAttribute('exposure', '1');
+                    viewer.setAttribute('ar', '');
+                    viewer.setAttribute('ar-modes', 'webxr scene-viewer quick-look');
+                    viewer.setAttribute('loading', 'eager');
+                    media.appendChild(viewer);
+                }
+                media.classList.add('is-3d');
+                showing = true;
+                toggle.disabled = false;
+                toggle.innerHTML = '<i class="fas fa-image" aria-hidden="true"></i> Ver fotos';
+            }).catch(function () {
+                toggle.disabled = false;
+                toggle.innerHTML = '<i class="fas fa-cube" aria-hidden="true"></i> Ver em 3D';
+                showToast('Não foi possível carregar o 3D agora.');
+            });
+        }
+
+        function showPhotos() {
+            media.classList.remove('is-3d');
+            showing = false;
+            toggle.innerHTML = '<i class="fas fa-cube" aria-hidden="true"></i> Ver em 3D';
+        }
+
+        toggle.addEventListener('click', function () {
+            if (showing) showPhotos(); else showModel();
+        });
+    }
+
     function renderProduct() {
         if (!product) {
             setText('productTitle', 'Peça não encontrada');
@@ -147,6 +232,7 @@
         renderGallery();
         renderRelated();
         updateWhatsApp();
+        setupModelViewer();
     }
 
     function setupActions() {

@@ -3659,6 +3659,118 @@ ol {
     transition: filter 0.4s ease, opacity 0.4s ease;
 }
 
+/* ============================================================
+   Motion & transitions (see assets/js/motion.js)
+   Entrance is pure CSS so content never depends on JS to show.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference) {
+    /* Page entrance — gated on html.js (set in <head> before paint, no flash) */
+    html.js .main {
+        animation: mdPageIn 0.62s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+
+    @keyframes mdPageIn {
+        from { opacity: 0; transform: translate3d(0, 14px, 0); }
+        to { opacity: 1; transform: none; }
+    }
+
+    /* Page exit — motion.js adds md-page-out before navigating */
+    html.md-page-out .main {
+        opacity: 0;
+        transform: translate3d(0, -10px, 0);
+        transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    /* 3D pointer tilt — motion.js drives the transform inline */
+    .md-tilting {
+        will-change: transform;
+        transform-style: preserve-3d;
+    }
+
+    .md-hero-content,
+    .md-hero-logo {
+        will-change: transform;
+    }
+}
+
+/* ============================================================
+   3D product viewer (see product-page.js / model-viewer)
+   ============================================================ */
+.md-product-modelviewer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    border-radius: inherit;
+    background: var(--md-mist);
+    z-index: 2;
+    display: none;
+    --poster-color: transparent;
+}
+
+.md-product-main-media.is-3d .md-product-modelviewer {
+    display: block;
+}
+
+.md-product-main-media.is-3d #productHeroImage {
+    visibility: hidden;
+}
+
+.md-product-main-media.is-3d .md-3d-note {
+    display: none;
+}
+
+.md-3d-toggle {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 15px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    background: rgba(6, 56, 25, 0.92);
+    color: var(--md-ivory);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    box-shadow: 0 10px 24px rgba(2, 31, 13, 0.3);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.md-3d-toggle:hover:not(:disabled) {
+    background: var(--md-green-soft);
+    transform: translateY(-1px);
+}
+
+.md-3d-toggle:disabled {
+    cursor: default;
+    opacity: 0.85;
+}
+
+.md-3d-note {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    z-index: 4;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(32, 27, 20, 0.78);
+    color: var(--md-ivory);
+}
+
 .md-footer {
     background: var(--md-green-deep);
     color: var(--md-ivory);

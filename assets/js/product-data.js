@@ -112,6 +112,8 @@
             price: 'Sob consulta',
             image: 'assets/img/maharaja/products/luminaria-turca.jpg',
             scene: 'assets/img/maharaja/editorial/living-ganesha.jpg',
+            model: 'https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Assets@main/Models/Lantern/glTF-Binary/Lantern.glb',
+            modelPreview: true,
             alt: 'Luminária turca colorida para sala',
             summary: 'Peça de luz colorida para sala, quarto, aparador ou canto de leitura.',
             story: 'A luminária entra como camada de luz e cor. Ela não precisa dominar a curadoria, mas ajuda a aquecer cenas com esculturas, madeira, tecidos e objetos pequenos.',

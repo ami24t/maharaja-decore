@@ -78,6 +78,39 @@ Peças do cron:
 Sem os secrets, o workflow roda verde e **não altera nada** — você pode editar o
 `stock.json` manualmente nesse meio-tempo.
 
+## Modelos 3D e movimento
+
+### Visualizador 3D nas páginas de produto
+
+Cada peça pode ter um modelo 3D girável (arrastar, zoom e **AR "ver na sua casa"** no
+celular), usando o web component [`<model-viewer>`](https://modelviewer.dev/) do Google:
+
+- A peça mostra o botão **"Ver em 3D"** quando o seu item em `assets/js/product-data.js`
+  tem o campo `model`. A foto continua como *poster*; o modelo só é baixado quando o
+  visitante clica (lazy-load) — assim a performance/Lighthouse é preservada.
+- Hoje a **Luminária turca** traz um modelo de **exemplo** (lanterna, via CDN) só para
+  demonstrar o recurso. As demais peças seguem com a galeria de fotos até terem modelo.
+
+### Como adicionar um modelo real (AI image-to-3D)
+
+1. **Gerar:** envie a foto do produto (em `assets/img/maharaja/products/`) para uma
+   ferramenta de imagem→3D — Meshy, Luma, Rodin (Hyper3D) ou Tripo — e exporte `.glb`.
+2. **Otimizar** (alvo < 3–5 MB) antes de comitar:
+   ```bash
+   npx gltf-transform optimize entrada.glb assets/models/<slug>.glb --texture-size 1024
+   ```
+3. **Plugar:** salve como `assets/models/<slug>.glb` e adicione ao produto em
+   `product-data.js`: `model: 'assets/models/<slug>.glb'` (remova `modelPreview`). Pronto —
+   o botão "Ver em 3D" passa a usar o modelo real.
+
+Detalhes em `assets/models/README.md`.
+
+### Movimento e transições
+
+`assets/js/motion.js` adiciona, de forma sutil e com respeito a `prefers-reduced-motion`:
+entrada suave de página, transição ao navegar entre páginas, parallax no herói e
+inclinação 3D (tilt) nos cards ao passar o mouse (apenas em ponteiros finos).
+
 ## Notas
 
 - O formulário é apenas protótipo e mostra confirmação na página.
