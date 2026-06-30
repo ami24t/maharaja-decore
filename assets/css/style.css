@@ -437,19 +437,13 @@ ol {
 }
 
 .md-brand-seal {
-    align-items: center;
-    background: var(--md-green);
-    border: 1px solid var(--md-gold);
-    border-radius: 50%;
-    color: var(--md-gold);
-    display: inline-flex;
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 28px;
-    font-weight: 700;
-    height: 52px;
-    justify-content: center;
-    line-height: 1;
-    width: 52px;
+    background: url('../img/maharaja/maharaja-logo-mark.png') center / contain no-repeat;
+    color: transparent;
+    display: inline-block;
+    flex: 0 0 auto;
+    font-size: 0;
+    height: 54px;
+    width: 78px;
 }
 
 .md-brand-copy {
@@ -472,6 +466,98 @@ ol {
     font-weight: 800;
     letter-spacing: 0.14em;
     text-transform: uppercase;
+}
+
+/* ===== Header: slim top bar + nav polish ===== */
+.md-topbar {
+    background: rgba(2, 24, 11, 0.94);
+    border-bottom: 1px solid rgba(241, 197, 107, 0.16);
+    height: 38px;
+    overflow: hidden;
+    transition: height 0.32s ease, border-color 0.32s ease;
+}
+
+.md-topbar .container {
+    align-items: center;
+    display: flex;
+    height: 38px;
+    justify-content: space-between;
+}
+
+.md-topbar-note {
+    color: rgba(255, 248, 236, 0.6);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+}
+
+.md-topbar-note i { color: var(--md-gold); margin-right: 7px; }
+
+.md-topbar-links {
+    align-items: center;
+    display: flex;
+    gap: 24px;
+}
+
+.md-topbar-links a {
+    align-items: center;
+    color: rgba(255, 248, 236, 0.82);
+    display: inline-flex;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    gap: 7px;
+    transition: color 0.2s ease;
+}
+
+.md-topbar-links a:hover { color: var(--md-gold); }
+.md-topbar-links a i { color: var(--md-gold); }
+
+#header.is-scrolled .md-topbar {
+    border-bottom-color: transparent;
+    height: 0;
+}
+
+#header.is-scrolled .navbar {
+    background: rgba(2, 31, 13, 0.96);
+    box-shadow: 0 12px 34px rgba(2, 31, 13, 0.22);
+    min-height: 74px;
+}
+
+/* Animated gold underline on nav links */
+.md-nav-link,
+.md-nav-trigger {
+    position: relative;
+}
+
+.md-nav-link::after,
+.md-nav-trigger::after {
+    background: var(--md-gold);
+    border-radius: 2px;
+    bottom: 4px;
+    content: '';
+    height: 2px;
+    left: 12px;
+    position: absolute;
+    right: 12px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.md-nav-link:hover::after,
+.md-nav-link.active::after,
+.md-nav-trigger:hover::after,
+.md-nav-cluster.active .md-nav-trigger::after,
+.md-nav-cluster.is-open .md-nav-trigger::after {
+    transform: scaleX(1);
+}
+
+@media (max-width: 767px) {
+    .md-topbar-note { display: none; }
+    .md-topbar .container { justify-content: center; }
+    .md-topbar-links { gap: 22px; }
+    .md-topbar-links a { font-size: 11px; }
 }
 
 .navbar-nav.items {
@@ -1092,7 +1178,7 @@ ol {
         radial-gradient(900px 520px at 10% 16%, rgba(241, 197, 107, 0.10) 0%, transparent 55%),
         linear-gradient(158deg, #073a1b 0%, #04230f 52%, #062f14 100%);
     min-height: 82vh;
-    padding: 112px 0 76px;
+    padding: 150px 0 76px;
 }
 
 @keyframes heroScene {

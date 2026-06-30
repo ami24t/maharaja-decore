@@ -356,8 +356,37 @@
         window.addEventListener('hashchange', function () { setActiveState(header); });
     }
 
+    function setupTopBar() {
+        var headerEl = document.getElementById('header');
+        if (!headerEl || headerEl.querySelector('.md-topbar')) return;
+        var bar = document.createElement('div');
+        bar.className = 'md-topbar';
+        bar.innerHTML = [
+            '<div class="container">',
+            '<span class="md-topbar-note">' + icon('fa-map-marker-alt') + 'Alto Paraíso de Goiás · Chapada dos Veadeiros</span>',
+            '<span class="md-topbar-links">',
+            '<a href="https://www.instagram.com/maharaja_decor/" target="_blank" rel="noopener">' + icon('fa-instagram') + '@maharaja_decor</a>',
+            '<a href="https://wa.me/5561991334423" target="_blank" rel="noopener">' + icon('fa-whatsapp') + '(61) 99133-4423</a>',
+            '</span>',
+            '</div>'
+        ].join('');
+        headerEl.insertBefore(bar, headerEl.firstChild);
+    }
+
+    // Collapse the top bar (and shrink the nav) once the page scrolls — works on
+    // every page (subpages don't load active.js).
+    function setupScroll() {
+        var headerEl = document.getElementById('header');
+        if (!headerEl) return;
+        function onScroll() { headerEl.classList.toggle('is-scrolled', window.scrollY > 60); }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    }
+
     function init() {
         if (document.querySelector('.navbar .container.header')) setupNav();
+        setupTopBar();
+        setupScroll();
         setupFooter();
     }
 

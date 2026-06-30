@@ -66,7 +66,7 @@
 
     .md-hero {
         min-height: auto;
-        padding: 104px 0 80px;
+        padding: 150px 0 80px;
     }
 
     .md-hero-grid {
@@ -222,7 +222,7 @@
 
     .md-hero {
         min-height: 640px;
-        padding: 100px 0 98px;
+        padding: 150px 0 98px;
     }
 
     .md-hero p {
@@ -497,7 +497,7 @@
 
     .md-hero {
         min-height: 590px;
-        padding-top: 92px;
+        padding-top: 150px;
     }
 
     .md-hero-logo {
