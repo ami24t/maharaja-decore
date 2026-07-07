@@ -1,0 +1,210 @@
+/* Loja — catálogo completo (loja/index.html + loja/peca.html) */
+
+/* Light hero: the md-exhibition-page base styles assume headings sit over dark
+   imagery; here they sit on the ivory background. */
+.md-loja-page .md-section-heading h1,
+.md-loja-page .md-section-heading h2,
+.md-peca-page .md-section-heading h2 {
+    color: var(--md-green-deep);
+}
+
+.md-loja-page .md-section-heading p,
+.md-peca-page .md-section-heading p {
+    color: var(--md-ink-soft);
+}
+
+.md-loja-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 26px;
+    padding: 14px 16px;
+    background: var(--md-paper);
+    border: 1px solid var(--md-line);
+    border-radius: var(--md-radius);
+    box-shadow: var(--md-shadow-sm);
+}
+
+.md-loja-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.md-loja-chip {
+    border: 1px solid var(--md-line);
+    background: var(--md-mist);
+    color: var(--md-ink-soft);
+    border-radius: 999px;
+    padding: 7px 15px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.md-loja-chip:hover {
+    border-color: var(--md-gold-deep);
+    color: var(--md-ink);
+}
+
+.md-loja-chip.is-active {
+    background: var(--md-green);
+    border-color: var(--md-green);
+    color: var(--md-ivory);
+}
+
+.md-loja-tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.md-loja-search {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--md-line);
+    border-radius: 999px;
+    background: var(--md-ivory);
+    color: var(--md-ink-muted);
+    margin: 0;
+}
+
+.md-loja-search input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-size: 0.88rem;
+    color: var(--md-ink);
+    min-width: 170px;
+}
+
+.md-loja-tools select {
+    border: 1px solid var(--md-line);
+    border-radius: 999px;
+    background: var(--md-ivory);
+    color: var(--md-ink);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    cursor: pointer;
+}
+
+.md-loja-count {
+    margin: 14px 2px 0;
+    font-size: 0.85rem;
+    color: var(--md-ink-muted);
+}
+
+.md-loja-state {
+    padding: 34px 26px;
+    text-align: center;
+    background: var(--md-mist);
+    border: 1px dashed var(--md-line-gold);
+    border-radius: var(--md-radius);
+    color: var(--md-ink-soft);
+    margin-bottom: 26px;
+}
+
+.md-loja-state a {
+    color: var(--md-green-soft);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.md-loja-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Página de peça genérica */
+
+.md-peca-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 42px;
+    align-items: start;
+    margin-top: 26px;
+}
+
+.md-peca-media {
+    position: relative;
+    border-radius: var(--md-radius);
+    overflow: hidden;
+    box-shadow: var(--md-shadow-md);
+    background: var(--md-mist);
+}
+
+.md-peca-media img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+.md-peca-media .md-stock-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+}
+
+.md-peca-panel h1 {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--md-green-deep);
+    font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+    margin: 8px 0 4px;
+}
+
+.md-peca-price {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--md-green-soft);
+    margin: 10px 0 2px;
+}
+
+.md-peca-availability {
+    font-size: 0.88rem;
+    color: var(--md-ink-muted);
+    margin-bottom: 16px;
+}
+
+.md-peca-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 22px 0 14px;
+}
+
+.md-peca-note {
+    font-size: 0.82rem;
+    color: var(--md-ink-muted);
+    border-left: 3px solid var(--md-line-gold);
+    padding-left: 12px;
+}
+
+.md-peca-related-section {
+    margin-top: 56px;
+}
+
+@media (max-width: 860px) {
+    .md-peca-layout {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .md-loja-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .md-loja-search input {
+        min-width: 0;
+        width: 100%;
+    }
+}

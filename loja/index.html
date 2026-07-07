@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Catálogo completo da Maharaja Decor: estátuas, fontes, artesanato, aromas e decoração da Índia em Alto Paraíso de Goiás.">
+    <meta name="author" content="Maharaja Decor">
+    <title>Loja | Maharaja Decor</title>
+    <link rel="icon" href="../assets/img/maharaja/maharaja-logo-crop.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/loja.css">
+    <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+</head>
+<body class="md-exhibition-page md-loja-page" data-page-type="loja" data-asset-base="../">
+    <a class="skip-link" href="#lojaMain">Ir para o conteúdo</a>
+    <div id="mdScrollProgress" class="md-scroll-progress" aria-hidden="true"></div>
+    <button id="scrollUp" class="scroll-up" type="button" title="Voltar ao topo" aria-label="Voltar ao topo"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+    <div class="main overflow-hidden">
+        <header id="header">
+            <nav class="navbar navbar-expand md-navbar">
+                <div class="container header">
+                    <a class="navbar-brand md-brand" href="../index.html#home"><span class="md-brand-seal" aria-hidden="true">M</span><span class="md-brand-copy"><span class="md-brand-name">Maharaja</span><span class="md-brand-line">Decoração, presentes, artesanato, moda</span></span></a>
+                    <div class="ml-auto"></div>
+                    <ul class="navbar-nav action align-items-center">
+                        <li class="nav-item"><button class="icon-btn cart-nav" type="button" aria-label="Lista de interesse"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span id="cartCount" aria-hidden="true">0</span></button></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main id="lojaMain">
+            <section class="section md-section md-loja-hero">
+                <div class="container">
+                    <nav class="md-breadcrumb" aria-label="Caminho">
+                        <a href="../index.html#home">Início</a>
+                        <span>Loja</span>
+                    </nav>
+                    <div class="md-section-heading md-section-heading-split">
+                        <div>
+                            <span class="md-eyebrow">Catálogo completo</span>
+                            <h1>Todas as peças da loja.</h1>
+                        </div>
+                        <p>O estoque real da Maharaja em Alto Paraíso de Goiás: estátuas, fontes, artesanato, aromas e decoração. Peças maiores seguem em compra consultiva pelo WhatsApp.</p>
+                    </div>
+                    <div class="md-loja-toolbar">
+                        <div id="lojaChips" class="md-loja-chips" role="group" aria-label="Filtrar por coleção"></div>
+                        <div class="md-loja-tools">
+                            <label class="md-loja-search">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                <input id="lojaSearch" type="search" placeholder="Buscar peça..." autocomplete="off">
+                            </label>
+                            <select id="lojaSort" aria-label="Ordenar peças">
+                                <option value="">Destaques</option>
+                                <option value="price-asc">Menor preço</option>
+                                <option value="price-desc">Maior preço</option>
+                                <option value="name">A–Z</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p id="lojaCount" class="md-loja-count" aria-live="polite"></p>
+                </div>
+            </section>
+            <section class="section md-section md-loja-catalog">
+                <div class="container">
+                    <div id="lojaState" class="md-loja-state" hidden></div>
+                    <div id="lojaGrid" class="md-product-grid" aria-live="polite"></div>
+                    <div class="md-loja-more">
+                        <button id="lojaMore" class="btn md-btn" type="button" hidden>Ver mais peças</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="section md-footer">
+            <div class="container">
+                <div class="md-footer-bottom">
+                    <span>&copy; <span id="mdYear">2026</span> Maharaja Decor.</span>
+                    <span><a href="../index.html#collection">Voltar à vitrine</a></span>
+                </div>
+            </div>
+        </footer>
+        <a class="md-floating-whatsapp" href="https://wa.me/5561991334423" target="_blank" rel="noopener" aria-label="Chamar Maharaja Decor no WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span></a>
+        <div id="toastMessage" class="md-toast" role="status" aria-live="polite"></div>
+    </div>
+    <script src="../assets/js/site-nav.js"></script>
+    <script src="../assets/js/loja.js"></script>
+    <script src="../assets/js/reveal.js"></script>
+    <script src="../assets/js/motion.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 
     var body = document.body;
     var assetBase = body.getAttribute('data-asset-base') || '';
-    var isNestedPage = assetBase === '../' || /\/(produto|ambientes|colecoes)\//.test(window.location.pathname);
+    var isNestedPage = assetBase === '../' || /\/(produto|ambientes|colecoes|loja)\//.test(window.location.pathname);
     var base = isNestedPage ? '../' : '';
     var pageType = body.getAttribute('data-page-type') || '';
     var isProductPage = body.classList.contains('md-product-detail-page') || !!body.getAttribute('data-product-slug');
@@ -39,6 +39,7 @@
     }
 
     function currentSection() {
+        if (pageType === 'loja' || /\/loja\//.test(window.location.pathname)) return 'loja';
         if (pageType === 'ambientes') return 'ambientes';
         if (pageType === 'colecoes') {
             return /\/colecoes\/estatuas\.html$/.test(window.location.pathname) ? 'estatuas' : 'colecoes';
@@ -113,7 +114,7 @@
                 colecoes
             ),
             '<a class="md-nav-link" data-nav-section="pecas" href="' + homeHash('#collection') + '">Peças</a>',
-            '<a class="md-nav-link" data-nav-section="loja" href="' + homeHash('#store') + '">Loja</a>',
+            '<a class="md-nav-link" data-nav-section="loja" href="' + pageUrl('loja/index.html') + '">Loja</a>',
             '<a class="md-nav-link" data-nav-section="contato" href="' + homeHash('#consultation') + '">Contato</a>',
             '</nav>'
         ].join('');
@@ -144,7 +145,7 @@
             '<div class="md-drawer-quick">',
             '<a href="' + homeHash('#home') + '">Início</a>',
             '<a href="' + homeHash('#collection') + '">Peças</a>',
-            '<a href="' + homeHash('#store') + '">Loja</a>',
+            '<a href="' + pageUrl('loja/index.html') + '">Loja</a>',
             '<a href="' + homeHash('#consultation') + '">Contato</a>',
             '</div>',
             drawerGroup('Ambientes', ambientes),
@@ -258,6 +259,7 @@
             '<div>',
             '<h3>Loja</h3>',
             '<ul>',
+            '<li><a href="' + pageUrl('loja/index.html') + '">Catálogo completo</a></li>',
             '<li><a href="' + pageUrl('colecoes/estatuas.html') + '">Estátuas</a></li>',
             '<li><a href="' + pageUrl('colecoes/sagrado.html') + '">Sagrado</a></li>',
             '<li><a href="' + homeHash('#collection') + '">Peças</a></li>',
