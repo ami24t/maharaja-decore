@@ -157,6 +157,16 @@
         }
 
         byId('pecaWhatsApp').href = whatsAppHref(product.title);
+
+        var buy = byId('pecaBuy');
+        if (buy && isCheckout && !soldOut) {
+            buy.href = 'checkout.html?slug=' + encodeURIComponent(product.handle);
+            buy.hidden = false;
+            var whats = byId('pecaWhatsApp');
+            whats.classList.remove('md-btn');
+            whats.classList.add('md-btn', 'md-btn-ghost');
+        }
+
         byId('pecaLayout').hidden = false;
 
         renderRelated(regionId, product);

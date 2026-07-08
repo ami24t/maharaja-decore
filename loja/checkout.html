@@ -1,0 +1,113 @@
+<!doctype html>
+<html class="no-js" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Finalizar pedido na Maharaja Decor.">
+    <meta name="robots" content="noindex">
+    <title>Finalizar pedido | Maharaja Decor</title>
+    <link rel="icon" href="../assets/img/maharaja/maharaja-logo-crop.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/loja.css">
+    <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+</head>
+<body class="md-exhibition-page md-checkout-page" data-page-type="loja" data-asset-base="../">
+    <a class="skip-link" href="#checkoutMain">Ir para o conteúdo</a>
+    <div class="main overflow-hidden">
+        <header id="header">
+            <nav class="navbar navbar-expand md-navbar">
+                <div class="container header">
+                    <a class="navbar-brand md-brand" href="../index.html#home"><span class="md-brand-seal" aria-hidden="true">M</span><span class="md-brand-copy"><span class="md-brand-name">Maharaja</span><span class="md-brand-line">Decoração, presentes, artesanato, moda</span></span></a>
+                    <div class="ml-auto"></div>
+                    <ul class="navbar-nav action align-items-center"></ul>
+                </div>
+            </nav>
+        </header>
+        <main id="checkoutMain">
+            <section class="section md-section">
+                <div class="container">
+                    <nav class="md-breadcrumb" aria-label="Caminho">
+                        <a href="../index.html#home">Início</a>
+                        <a href="index.html">Loja</a>
+                        <span>Finalizar pedido</span>
+                    </nav>
+                    <div class="md-section-heading">
+                        <span class="md-eyebrow">Compra segura</span>
+                        <h1>Finalizar pedido.</h1>
+                    </div>
+                    <p id="checkoutLoading" class="md-loja-count">Preparando o seu pedido...</p>
+                    <div id="checkoutError" class="md-loja-state" hidden></div>
+                    <div id="checkoutLayout" class="md-checkout-layout" hidden>
+                        <form id="checkoutForm" class="md-checkout-form" novalidate>
+                            <fieldset>
+                                <legend>Seus dados</legend>
+                                <label>Nome completo
+                                    <input id="fieldName" type="text" autocomplete="name" required>
+                                </label>
+                                <div class="md-checkout-row">
+                                    <label>Email
+                                        <input id="fieldEmail" type="email" autocomplete="email" required>
+                                    </label>
+                                    <label>WhatsApp / telefone
+                                        <input id="fieldPhone" type="tel" autocomplete="tel" placeholder="(61) 9...">
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Como quer receber?</legend>
+                                <div id="shippingOptions" class="md-checkout-choices"></div>
+                                <div id="addressFields" hidden>
+                                    <div class="md-checkout-row">
+                                        <label>CEP
+                                            <input id="fieldCep" type="text" autocomplete="postal-code" placeholder="00000-000">
+                                        </label>
+                                        <label>Cidade
+                                            <input id="fieldCity" type="text" autocomplete="address-level2">
+                                        </label>
+                                        <label>UF
+                                            <input id="fieldUf" type="text" maxlength="2" autocomplete="address-level1" placeholder="GO">
+                                        </label>
+                                    </div>
+                                    <label>Endereço (rua, número, complemento)
+                                        <input id="fieldStreet" type="text" autocomplete="street-address">
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Pagamento</legend>
+                                <div id="paymentOptions" class="md-checkout-choices"></div>
+                            </fieldset>
+                            <button id="checkoutSubmit" class="btn md-btn" type="submit">Finalizar pedido</button>
+                        </form>
+                        <aside class="md-checkout-summary">
+                            <h2>Resumo</h2>
+                            <div id="checkoutProduct" class="md-checkout-product"></div>
+                            <dl>
+                                <div><dt id="summaryItem">Peça</dt><dd id="summaryItemPrice">—</dd></div>
+                                <div><dt id="summaryShipping">Entrega</dt><dd id="summaryShippingPrice">—</dd></div>
+                                <div class="md-checkout-total"><dt>Total</dt><dd id="summaryTotal">—</dd></div>
+                            </dl>
+                            <p class="md-peca-note">Dúvidas? <a href="https://wa.me/5561991334423" target="_blank" rel="noopener">Chame a loja no WhatsApp</a>.</p>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="section md-footer">
+            <div class="container">
+                <div class="md-footer-bottom">
+                    <span>&copy; <span id="mdYear">2026</span> Maharaja Decor.</span>
+                    <span><a href="index.html">Voltar à loja</a></span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="../assets/js/site-nav.js"></script>
+    <script src="../assets/js/checkout.js"></script>
+</body>
+</html>

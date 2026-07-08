@@ -102,6 +102,26 @@
         }
     }
 
+    // Editorial product pages get a "Comprar agora" button (→ buy-now checkout)
+    // when the piece is buyable online and in stock.
+    function injectBuyButton(items) {
+        var slug = body.getAttribute('data-product-slug');
+        if (!slug || !items[slug]) return;
+        var entry = items[slug];
+        if (entry.mode !== 'checkout' || entry.state !== 'in_stock') return;
+        if (document.getElementById('mdBuyNow')) return;
+
+        var anchor = document.getElementById('addProductToList');
+        if (!anchor || !anchor.parentNode) return;
+
+        var link = document.createElement('a');
+        link.id = 'mdBuyNow';
+        link.className = 'btn md-btn';
+        link.href = assetBase + 'loja/checkout.html?slug=' + encodeURIComponent(slug);
+        link.innerHTML = '<i class="fas fa-lock" aria-hidden="true"></i> Comprar agora';
+        anchor.parentNode.insertBefore(link, anchor);
+    }
+
     // ---- Medusa Store API (primary source) --------------------------------
 
     function apiFetch(path) {
@@ -196,6 +216,7 @@
                 if (!items) return;
                 decorate(items);
                 paintPrices(items);
+                injectBuyButton(items);
             })
             .catch(function () { /* fail open — leave the catalog untouched */ });
     }
