@@ -18,7 +18,7 @@
     var STOCK_URL = assetBase + 'assets/data/stock.json';
 
     var config = window.MaharajaCommerce || {};
-    var API_URL = config.apiUrl || 'http://localhost:9000';
+    var API_URL = config.apiUrl || 'https://backend-production-462f.up.railway.app';
     var PUBLISHABLE_KEY = config.publishableKey ||
         'pk_bd7d54b46835285f4a86c89e8fde5e3b2a3fb81bdb5f2d60cc10478da8d2f415';
     var API_TIMEOUT_MS = 3000;
