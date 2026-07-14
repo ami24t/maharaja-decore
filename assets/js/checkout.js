@@ -15,7 +15,7 @@
     var config = window.MaharajaCommerce || {};
     var API_URL = config.apiUrl || 'http://localhost:9000';
     var PUBLISHABLE_KEY = config.publishableKey ||
-        'pk_61239cf22680380ffa76c4ed3f21883a36f775251691a98eaa016ccae084aa3a';
+        'pk_bd7d54b46835285f4a86c89e8fde5e3b2a3fb81bdb5f2d60cc10478da8d2f415';
     var MP_PROVIDER_ID = 'pp_mercadopago-checkout_mercadopago-checkout';
     var SYSTEM_PROVIDER_ID = 'pp_system_default';
     var CART_KEY = 'md-checkout-cart';
