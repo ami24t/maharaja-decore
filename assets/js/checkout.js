@@ -131,11 +131,20 @@
         return !!option && /retirada/i.test(option.name);
     }
 
+    // The no-charge test provider is for development only: it renders on
+    // localhost and *.vercel.app, never on the public domain.
+    function isDevHost() {
+        var host = window.location.hostname;
+        return host === 'localhost' || host === '127.0.0.1' || /\.vercel\.app$/.test(host);
+    }
+
     function renderProviders() {
         var host = byId('paymentOptions');
         var labels = {};
         labels[MP_PROVIDER_ID] = { title: 'Mercado Pago', detail: 'Pix, cartão e boleto na página segura do Mercado Pago' };
-        labels[SYSTEM_PROVIDER_ID] = { title: 'Pagamento de teste', detail: 'Somente desenvolvimento — confirma o pedido sem cobrança' };
+        if (isDevHost()) {
+            labels[SYSTEM_PROVIDER_ID] = { title: 'Pagamento de teste', detail: 'Somente desenvolvimento — confirma o pedido sem cobrança' };
+        }
 
         var known = state.providers.filter(function (p) { return labels[p.id]; });
         host.innerHTML = known.map(function (provider, index) {
