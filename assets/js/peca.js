@@ -27,6 +27,95 @@
 
     function byId(id) { return document.getElementById(id); }
 
+    // ---- Lazy 3D viewer (mirrors product-page.js for editorial pages) -----
+    // Loads @google/model-viewer only when the visitor asks, and only for
+    // products carrying metadata.storefront_model (Meshy-generated GLB).
+
+    var MODEL_VIEWER_SRC = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';
+    var modelLibPromise = null;
+
+    function loadModelViewer() {
+        if (modelLibPromise) return modelLibPromise;
+        modelLibPromise = new Promise(function (resolve, reject) {
+            if (window.customElements && customElements.get('model-viewer')) { resolve(); return; }
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = MODEL_VIEWER_SRC;
+            script.onload = function () { customElements.whenDefined('model-viewer').then(resolve, resolve); };
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+        return modelLibPromise;
+    }
+
+    function setupModelViewer(product) {
+        var meta = product.metadata || {};
+        var modelUrl = meta.storefront_model;
+        if (!modelUrl) return;
+        var media = document.querySelector('.md-peca-media');
+        var img = byId('pecaImage');
+        if (!media || !img) return;
+
+        var toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'md-3d-toggle';
+        toggle.innerHTML = '<i class="fas fa-cube" aria-hidden="true"></i> Ver em 3D';
+        media.appendChild(toggle);
+
+        // AI-reconstructed models are an illustration, not an exact replica of
+        // the hand-painted piece — always label them so customers aren't misled.
+        var note = document.createElement('span');
+        note.className = 'md-3d-note';
+        note.textContent = 'Modelo 3D ilustrativo';
+        media.appendChild(note);
+
+        var modelSrc = /^https?:\/\//.test(modelUrl) ? modelUrl : assetBase + modelUrl;
+        var viewer = null;
+        var showing = false;
+
+        function showModel() {
+            toggle.disabled = true;
+            toggle.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Carregando 3D…';
+            loadModelViewer().then(function () {
+                if (!viewer) {
+                    viewer = document.createElement('model-viewer');
+                    viewer.className = 'md-product-modelviewer';
+                    viewer.setAttribute('src', modelSrc);
+                    viewer.setAttribute('poster', img.currentSrc || img.src);
+                    viewer.setAttribute('alt', 'Modelo 3D de ' + (product.title || 'peça'));
+                    viewer.setAttribute('camera-controls', '');
+                    viewer.setAttribute('auto-rotate', '');
+                    viewer.setAttribute('auto-rotate-delay', '0');
+                    viewer.setAttribute('rotation-per-second', '18deg');
+                    viewer.setAttribute('interaction-prompt', 'auto');
+                    viewer.setAttribute('shadow-intensity', '1');
+                    viewer.setAttribute('exposure', '1');
+                    viewer.setAttribute('ar', '');
+                    viewer.setAttribute('ar-modes', 'webxr scene-viewer quick-look');
+                    viewer.setAttribute('loading', 'eager');
+                    media.appendChild(viewer);
+                }
+                media.classList.add('is-3d');
+                showing = true;
+                toggle.disabled = false;
+                toggle.innerHTML = '<i class="fas fa-image" aria-hidden="true"></i> Ver fotos';
+            }).catch(function () {
+                toggle.disabled = false;
+                toggle.innerHTML = '<i class="fas fa-cube" aria-hidden="true"></i> Ver em 3D';
+            });
+        }
+
+        function showPhotos() {
+            media.classList.remove('is-3d');
+            showing = false;
+            toggle.innerHTML = '<i class="fas fa-cube" aria-hidden="true"></i> Ver em 3D';
+        }
+
+        toggle.addEventListener('click', function () {
+            if (showing) showPhotos(); else showModel();
+        });
+    }
+
     function esc(value) {
         return String(value == null ? '' : value)
             .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -169,6 +258,7 @@
 
         byId('pecaLayout').hidden = false;
 
+        setupModelViewer(product);
         renderRelated(regionId, product);
     }
 

@@ -42,7 +42,13 @@ const PHOTOS = {
     'banco-pintado-a-mao': 'banco-madeira.jpg',
     'padmini-incenso-dhoop': 'incenso-padmini-dhoop.jpg',
     'luminaria-turca': 'luminaria-turca.jpg',
-    'pecas-decorativas': 'hero-altar.jpg'
+    'pecas-decorativas': 'hero-altar.jpg',
+    // 2026-08-09 batch — loja/ generic-catalog pieces (real shop stock)
+    'shiva-meditando': 'shiva-meditando.jpg',
+    'buda-mandala-lotus': 'buda-mandala-lotus.jpg',
+    'ganesha-em-trono': 'ganesha-em-trono.jpg',
+    'ganesha-branco-dourado': 'ganesha-branco-dourado.jpg',
+    'buda-azul-dourado': 'buda-azul-dourado.jpg'
 };
 
 const MIME = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png' };
@@ -105,8 +111,13 @@ async function download(url, dest) {
 
 function optimize(rawPath, outPath) {
     return new Promise((resolveOpt) => {
+        // texture-compress webp/avif/ktx2 all route through sharp/libvips, which
+        // crashes on this machine ("colourspace: parameter space not set") —
+        // draco mesh compression alone still cuts raw Meshy output by ~3-4x.
+        // TODO: fix the sharp/libvips install so texture recompression works
+        // again (target <3-5MB per README; current output lands around 10MB).
         const args = ['--yes', '@gltf-transform/cli', 'optimize', rawPath, outPath,
-            '--compress', 'draco', '--texture-compress', 'webp'];
+            '--compress', 'draco', '--texture-compress', 'false', '--texture-size', '1024'];
         const p = spawn('npx', args, { shell: true, stdio: 'ignore' });
         p.on('close', (code) => resolveOpt(code === 0));
     });

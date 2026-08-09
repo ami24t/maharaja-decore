@@ -154,6 +154,20 @@
     left: 14px;
 }
 
+/* 3D viewer toggle — mirrors .md-product-main-media (produto/ pages) in
+   style.css, scoped to the generic catalog template's own class names. */
+.md-peca-media.is-3d .md-product-modelviewer {
+    display: block;
+}
+
+.md-peca-media.is-3d #pecaImage {
+    visibility: hidden;
+}
+
+.md-peca-media.is-3d .md-3d-note {
+    display: inline-flex;
+}
+
 .md-peca-panel h1 {
     font-family: 'Cormorant Garamond', serif;
     color: var(--md-green-deep);
