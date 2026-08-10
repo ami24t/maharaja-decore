@@ -1,0 +1,7 @@
+handle;titulo;descricao;categorias;preco;quantidade;peso_gramas;foto;foto_verso
+shiva-meditando;Shiva meditando;Estátua de Shiva em posição de meditação, com tridente (trisula), colares e detalhes em resina com acabamento metalizado prateado.;Sagrado,Estátuas;980;1;2500;;
+ganesha-em-trono;Ganesha em trono ornamentado;Ganesha entronizado sob arco decorado com coroa em relevo e esmalte azul, colar de flores e acabamento bronze/prata.;Sagrado,Estátuas;620;1;3500;;
+buda-mandala-lotus;Buda com mandala de lótus;Buda sentado em meditação, com halo circular ornamentado em mandala de lótus e veste trabalhada em tons de bronze, verde e vinho.;Sagrado,Estátuas;206;1;3000;;
+ganesha-branco-dourado;Ganesha branco e dourado;Ganesha em acabamento branco envelhecido com detalhes dourados e base vermelha estampada.;Sagrado,Estátuas;;1;1500;;
+buda-azul-dourado;Buda azul e dourado;Buda sentado com mudra de ensino, halo em chama dourada e veste em azul profundo com estampa geométrica.;Sagrado,Estátuas;;1;2000;;
+;Exemplo peça nova;Descrição da peça nova — apague esta linha de exemplo antes de rodar.;Decoração;150;2;800;fotos/exemplo.jpg;fotos/exemplo-verso.jpg
