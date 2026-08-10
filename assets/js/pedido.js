@@ -49,7 +49,15 @@
     }
 
     function clearCart() {
-        try { localStorage.removeItem(CART_KEY); } catch (err) { /* ignore */ }
+        try {
+            var completedId = localStorage.getItem(CART_KEY);
+            localStorage.removeItem(CART_KEY);
+            // If the shared shopping cart (cart.js) was the one checked out,
+            // it's been consumed by the order — drop it too.
+            if (completedId && localStorage.getItem('md-cart-id') === completedId) {
+                localStorage.removeItem('md-cart-id');
+            }
+        } catch (err) { /* ignore */ }
     }
 
     function storedCartId() {

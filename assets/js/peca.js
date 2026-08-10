@@ -254,6 +254,26 @@
             var whats = byId('pecaWhatsApp');
             whats.classList.remove('md-btn');
             whats.classList.add('md-btn', 'md-btn-ghost');
+
+            // "Adicionar ao carrinho" beside buy-now (multi-item flow).
+            if (variant.id && !byId('pecaAddCart')) {
+                var addBtn = document.createElement('button');
+                addBtn.id = 'pecaAddCart';
+                addBtn.type = 'button';
+                addBtn.className = 'btn md-btn md-btn-ghost';
+                addBtn.innerHTML = '<i class="fas fa-shopping-basket" aria-hidden="true"></i> Adicionar ao carrinho';
+                addBtn.addEventListener('click', function () {
+                    if (!window.MaharajaCart) return;
+                    addBtn.disabled = true;
+                    window.MaharajaCart.addItem(variant.id, {
+                        title: product.title,
+                        maxQty: (managed && typeof qty === 'number') ? qty : undefined
+                    }).catch(function () { /* toast already shown */ }).then(function () {
+                        addBtn.disabled = false;
+                    });
+                });
+                buy.parentNode.insertBefore(addBtn, buy.nextSibling);
+            }
         }
 
         byId('pecaLayout').hidden = false;

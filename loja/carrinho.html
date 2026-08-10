@@ -1,0 +1,76 @@
+<!doctype html>
+<html class="no-js" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Seu carrinho de compras na Maharaja Decor.">
+    <meta name="robots" content="noindex">
+    <title>Carrinho | Maharaja Decor</title>
+    <link rel="icon" href="../assets/img/maharaja/maharaja-logo-crop.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/loja.css">
+    <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+</head>
+<body class="md-exhibition-page md-carrinho-page" data-page-type="loja" data-asset-base="../">
+    <a class="skip-link" href="#carrinhoMain">Ir para o conteúdo</a>
+    <div class="main overflow-hidden">
+        <header id="header">
+            <nav class="navbar navbar-expand md-navbar">
+                <div class="container header">
+                    <a class="navbar-brand md-brand" href="../index.html#home"><span class="md-brand-seal" aria-hidden="true">M</span><span class="md-brand-copy"><span class="md-brand-name">Maharaja</span><span class="md-brand-line">Decoração, presentes, artesanato, moda</span></span></a>
+                    <div class="ml-auto"></div>
+                    <ul class="navbar-nav action align-items-center"></ul>
+                </div>
+            </nav>
+        </header>
+        <main id="carrinhoMain">
+            <section class="section md-section">
+                <div class="container">
+                    <nav class="md-breadcrumb" aria-label="Caminho">
+                        <a href="../index.html#home">Início</a>
+                        <a href="index.html">Loja</a>
+                        <span>Carrinho</span>
+                    </nav>
+                    <div class="md-section-heading">
+                        <span class="md-eyebrow">Sua seleção</span>
+                        <h1>Carrinho de compras.</h1>
+                    </div>
+                    <p id="carrinhoLoading" class="md-loja-count">Carregando o carrinho...</p>
+                    <div id="carrinhoEmpty" class="md-loja-state" hidden>
+                        <p><strong>Seu carrinho está vazio.</strong></p>
+                        <p><a href="index.html">Explore o catálogo</a> e adicione peças para comprar online — ou <a href="https://wa.me/5561991334423" target="_blank" rel="noopener">consulte a loja no WhatsApp</a>.</p>
+                    </div>
+                    <div id="carrinhoLayout" class="md-carrinho-layout" hidden>
+                        <div id="carrinhoItems" class="md-carrinho-items"></div>
+                        <aside class="md-checkout-summary">
+                            <h2>Resumo</h2>
+                            <dl>
+                                <div><dt id="carrinhoCount">Peças</dt><dd id="carrinhoSubtotal">—</dd></div>
+                                <div><dt>Entrega</dt><dd>calculada no checkout</dd></div>
+                            </dl>
+                            <a id="carrinhoCheckout" class="btn md-btn" href="checkout.html">Finalizar compra</a>
+                            <p class="md-peca-note">Retirada gratuita na loja em Alto Paraíso de Goiás, ou envio combinado no checkout.</p>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="section md-footer">
+            <div class="container">
+                <div class="md-footer-bottom">
+                    <span>&copy; <span id="mdYear">2026</span> Maharaja Decor.</span>
+                    <span><a href="index.html">Continuar comprando</a></span>
+                </div>
+            </div>
+        </footer>
+        <div id="toastMessage" class="md-toast" role="status" aria-live="polite"></div>
+    </div>
+    <script src="../assets/js/site-nav.js"></script>
+    <script src="../assets/js/carrinho.js"></script>
+</body>
+</html>

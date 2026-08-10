@@ -93,6 +93,8 @@
             price: typeof price === 'number' ? price : null,
             mode: meta.purchase_mode === 'checkout' ? 'checkout' : 'whatsapp',
             soldOut: managed && typeof qty === 'number' && qty <= 0,
+            inventory: (managed && typeof qty === 'number') ? qty : null,
+            variantId: variant.id || null,
             image: imageUrl(product),
             href: productHref(product),
             searchable: ((product.title || '') + ' ' + (product.description || '')).toLowerCase()
@@ -124,11 +126,32 @@
             '</div>',
             '<div class="product-actions">',
             '<a class="btn md-btn md-btn-ghost product-details-link" href="' + esc(item.href) + '">Ver peça</a>',
+            (item.mode === 'checkout' && !item.soldOut && item.variantId
+                ? '<button type="button" class="btn md-btn md-btn-compact md-add-to-cart"' +
+                  ' data-variant-id="' + esc(item.variantId) + '"' +
+                  ' data-title="' + esc(item.title) + '"' +
+                  (item.inventory !== null ? ' data-max-qty="' + item.inventory + '"' : '') + '>' +
+                  '<i class="fas fa-shopping-basket" aria-hidden="true"></i> Carrinho</button>'
+                : ''),
             '</div>',
             '</div>',
             '</article>'
         ].join('');
     }
+
+    // One delegated listener covers every re-render of the grid.
+    document.addEventListener('click', function (event) {
+        var button = event.target.closest('.md-add-to-cart');
+        if (!button || !window.MaharajaCart) return;
+        var maxQty = button.getAttribute('data-max-qty');
+        button.disabled = true;
+        window.MaharajaCart.addItem(button.getAttribute('data-variant-id'), {
+            title: button.getAttribute('data-title'),
+            maxQty: maxQty !== null ? parseInt(maxQty, 10) : undefined
+        }).catch(function () { /* toast already shown */ }).then(function () {
+            button.disabled = false;
+        });
+    });
 
     function currentList() {
         var list = allProducts.filter(function (item) {

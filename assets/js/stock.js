@@ -22,7 +22,7 @@
     var PUBLISHABLE_KEY = config.publishableKey ||
         'pk_bd7d54b46835285f4a86c89e8fde5e3b2a3fb81bdb5f2d60cc10478da8d2f415';
     var API_TIMEOUT_MS = 3000;
-    var CACHE_KEY = 'md-catalog-v1';
+    var CACHE_KEY = 'md-catalog-v2'; // v2: entries carry variantId/inventory/title
     var CACHE_TTL_MS = 60000;
 
     var LABELS = {
@@ -120,6 +120,26 @@
         link.href = assetBase + 'loja/checkout.html?slug=' + encodeURIComponent(slug);
         link.innerHTML = '<i class="fas fa-lock" aria-hidden="true"></i> Comprar agora';
         anchor.parentNode.insertBefore(link, anchor);
+
+        // "Adicionar ao carrinho" beside buy-now (multi-item flow).
+        if (entry.variantId && !document.getElementById('mdAddToCart')) {
+            var addBtn = document.createElement('button');
+            addBtn.id = 'mdAddToCart';
+            addBtn.type = 'button';
+            addBtn.className = 'btn md-btn md-btn-ghost';
+            addBtn.innerHTML = '<i class="fas fa-shopping-basket" aria-hidden="true"></i> Adicionar ao carrinho';
+            addBtn.addEventListener('click', function () {
+                if (!window.MaharajaCart) return;
+                addBtn.disabled = true;
+                window.MaharajaCart.addItem(entry.variantId, {
+                    title: entry.title,
+                    maxQty: entry.inventory !== null ? entry.inventory : undefined
+                }).catch(function () { /* toast already shown */ }).then(function () {
+                    addBtn.disabled = false;
+                });
+            });
+            link.parentNode.insertBefore(addBtn, link.nextSibling);
+        }
     }
 
     // ---- Medusa Store API (primary source) --------------------------------
@@ -168,7 +188,10 @@
             items[product.handle] = {
                 state: (managed && typeof qty === 'number' && qty <= 0) ? 'sold_out' : 'in_stock',
                 price: typeof price === 'number' ? price : null,
-                mode: meta.purchase_mode === 'checkout' ? 'checkout' : 'whatsapp'
+                mode: meta.purchase_mode === 'checkout' ? 'checkout' : 'whatsapp',
+                variantId: variant.id || null,
+                inventory: (managed && typeof qty === 'number') ? qty : null,
+                title: product.title || product.handle
             };
         });
         return items;
@@ -181,7 +204,7 @@
         return apiFetch('/store/regions').then(function (data) {
             var region = data && data.regions && data.regions[0];
             if (!region) throw new Error('no region');
-            var fields = 'handle,+metadata,*variants.calculated_price,' +
+            var fields = 'handle,title,+metadata,*variants.calculated_price,' +
                 '+variants.inventory_quantity,+variants.manage_inventory';
             return apiFetch('/store/products?limit=100&region_id=' + region.id +
                 '&fields=' + encodeURIComponent(fields));

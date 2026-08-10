@@ -385,11 +385,23 @@
         onScroll();
     }
 
+    // The shopping cart module (badge, nav icon, MaharajaCart API) is needed on
+    // every page; loading it here means no per-page <script> tags to maintain.
+    function loadCartModule() {
+        if (window.MaharajaCart || document.querySelector('script[data-md-cart]')) return;
+        var script = document.createElement('script');
+        script.src = base + 'assets/js/cart.js';
+        script.defer = true;
+        script.setAttribute('data-md-cart', '1');
+        document.head.appendChild(script);
+    }
+
     function init() {
         if (document.querySelector('.navbar .container.header')) setupNav();
         setupTopBar();
         setupScroll();
         setupFooter();
+        loadCartModule();
     }
 
     if (document.querySelector('.navbar .container.header') || document.readyState !== 'loading') {

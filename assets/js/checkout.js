@@ -1,10 +1,11 @@
 (function () {
     'use strict';
 
-    // Buy-now checkout (loja/checkout.html?slug=...&qty=N).
-    //
-    // Single-item checkout per master plan D5: creates a fresh Medusa cart for the
-    // piece, collects contact + entrega (retirada na loja ou envio), then pays:
+    // Checkout (loja/checkout.html) — two entry modes:
+    //   ?slug=...&qty=N  → buy-now: creates a fresh single-item Medusa cart;
+    //   (no slug)        → cart mode: checks out the shared shopping cart
+    //                      (md-cart-id, managed by cart.js) with all its items.
+    // Both collect contact + entrega (retirada na loja ou envio), then pay:
     //   - Mercado Pago  → redirect to the hosted Checkout Pro page (init_point);
     //                     the return lands on pedido.html which completes the cart.
     //   - Test provider → completes the cart immediately (local development only).
@@ -92,15 +93,28 @@
         return checked ? checked.value : null;
     }
 
+    function cartItems() {
+        return (state.cart && state.cart.items) || [];
+    }
+
+    function itemsSubtotal() {
+        return cartItems().reduce(function (sum, item) {
+            return sum + (typeof item.unit_price === 'number' ? item.unit_price * item.quantity : 0);
+        }, 0);
+    }
+
     function updateSummary() {
-        var qty = state.cart ? state.cart.items[0].quantity : 1;
-        var unit = state.cart ? state.cart.items[0].unit_price : null;
+        var items = cartItems();
+        var count = items.reduce(function (sum, item) { return sum + item.quantity; }, 0);
         var shipping = selectedShippingOption();
         var freight = shipping ? Number(shipping.amount) : 0;
-        var total = (unit !== null ? unit * qty : 0) + freight;
+        var subtotal = itemsSubtotal();
+        var total = subtotal + freight;
 
-        byId('summaryItem').textContent = qty + ' × ' + state.product.title;
-        byId('summaryItemPrice').textContent = money(unit !== null ? unit * qty : null);
+        byId('summaryItem').textContent = items.length === 1
+            ? items[0].quantity + ' × ' + (items[0].product_title || items[0].title)
+            : count + ' peças';
+        byId('summaryItemPrice').textContent = money(subtotal);
         byId('summaryShipping').textContent = shipping ? shipping.name : 'Escolha a entrega';
         byId('summaryShippingPrice').textContent = shipping ? (freight === 0 ? 'Grátis' : money(freight)) : '—';
         byId('summaryTotal').textContent = money(total);
@@ -159,18 +173,31 @@
         }).join('');
     }
 
-    function renderItem() {
-        var meta = state.product.metadata || {};
-        var image = state.product.thumbnail ||
-            (state.product.images && state.product.images[0] && state.product.images[0].url) ||
-            meta.storefront_image;
-        image = image && !/^https?:\/\//.test(image) ? assetBase + image : image;
+    function lineImage(item) {
+        // Buy-now mode has the full product (storefront_image metadata); cart
+        // mode relies on the line item's thumbnail.
+        if (state.product) {
+            var meta = state.product.metadata || {};
+            var img = state.product.thumbnail ||
+                (state.product.images && state.product.images[0] && state.product.images[0].url) ||
+                meta.storefront_image;
+            if (img) return /^https?:\/\//.test(img) ? img : assetBase + img;
+        }
+        var url = item.thumbnail;
+        if (!url) return assetBase + 'assets/img/maharaja/products/hero-altar.jpg';
+        return /^https?:\/\//.test(url) ? url : assetBase + url;
+    }
 
-        byId('checkoutProduct').innerHTML = [
-            '<img src="' + esc(image || '') + '" alt="' + esc(state.product.title) + '">',
-            '<div><strong>' + esc(state.product.title) + '</strong>',
-            '<span>' + money(state.cart.items[0].unit_price) + '</span></div>'
-        ].join('');
+    function renderItem() {
+        byId('checkoutProduct').innerHTML = cartItems().map(function (item) {
+            return [
+                '<div class="md-checkout-line">',
+                '<img src="' + esc(lineImage(item)) + '" alt="' + esc(item.product_title || item.title) + '">',
+                '<div><strong>' + esc(item.product_title || item.title) + '</strong>',
+                '<span>' + item.quantity + ' × ' + money(item.unit_price) + '</span></div>',
+                '</div>'
+            ].join('');
+        }).join('');
     }
 
     // ---- checkout steps ----------------------------------------------------
@@ -247,6 +274,9 @@
         }
 
         setBusy(true);
+        // pedido.html completes whatever cart id is stored here after the
+        // Mercado Pago redirect — required for BOTH buy-now and cart mode.
+        try { localStorage.setItem(CART_KEY, state.cart.id); } catch (err) { /* ignore */ }
         apiFetch('/store/carts/' + state.cart.id, {
             method: 'POST',
             body: { email: email, shipping_address: address, billing_address: address }
@@ -287,7 +317,13 @@
         return apiFetch('/store/carts/' + state.cart.id + '/complete', { method: 'POST' })
             .then(function (data) {
                 if (data.type === 'order' && data.order) {
-                    try { localStorage.removeItem(CART_KEY); } catch (err) { /* ignore */ }
+                    try {
+                        localStorage.removeItem(CART_KEY);
+                        // The shared shopping cart was consumed by this order.
+                        if (localStorage.getItem('md-cart-id') === state.cart.id) {
+                            localStorage.removeItem('md-cart-id');
+                        }
+                    } catch (err) { /* ignore */ }
                     window.location.href = 'pedido.html?status=success&order=' +
                         encodeURIComponent(data.order.display_id || data.order.id);
                     return;
@@ -299,36 +335,51 @@
 
     // ---- init ---------------------------------------------------------------
 
+    // Cart mode: reuse the shared shopping cart built up by cart.js.
+    function loadExistingCart() {
+        var id = null;
+        try { id = localStorage.getItem('md-cart-id'); } catch (err) { /* ignore */ }
+        if (!id) return Promise.reject(new Error('EMPTY_CART'));
+        return apiFetch('/store/carts/' + id).then(function (data) {
+            if (!data.cart || data.cart.completed_at || !(data.cart.items || []).length) {
+                throw new Error('EMPTY_CART');
+            }
+            state.cart = data.cart;
+        });
+    }
+
     function init() {
         var params = new URLSearchParams(window.location.search);
         var slug = params.get('slug');
         var qty = Math.max(1, parseInt(params.get('qty') || '1', 10) || 1);
-        if (!slug) {
-            showError('Peça não informada.');
-            return;
-        }
 
-        apiFetch('/store/regions').then(function (data) {
+        var prepare = apiFetch('/store/regions').then(function (data) {
             state.region = data.regions && data.regions[0];
             if (!state.region) throw new Error('Loja indisponível no momento.');
+
+            if (!slug) return loadExistingCart();
+
             var fields = 'handle,title,thumbnail,*images,+metadata,*variants,' +
                 '+variants.inventory_quantity,+variants.manage_inventory,*variants.calculated_price';
             return apiFetch('/store/products?handle=' + encodeURIComponent(slug) +
-                '&region_id=' + state.region.id + '&fields=' + encodeURIComponent(fields));
-        }).then(function (data) {
-            state.product = data.products && data.products[0];
-            if (!state.product) throw new Error('Peça não encontrada.');
-            state.variant = (state.product.variants || [])[0];
-            var meta = state.product.metadata || {};
-            if (!state.variant || meta.purchase_mode !== 'checkout') {
-                throw new Error('Esta peça é vendida por consulta no WhatsApp.');
-            }
-            var stock = state.variant.inventory_quantity;
-            if (state.variant.manage_inventory !== false && typeof stock === 'number' && stock < qty) {
-                throw new Error('Peça esgotada no momento.');
-            }
-            return createCart(qty);
-        }).then(function () {
+                '&region_id=' + state.region.id + '&fields=' + encodeURIComponent(fields)
+            ).then(function (data) {
+                state.product = data.products && data.products[0];
+                if (!state.product) throw new Error('Peça não encontrada.');
+                state.variant = (state.product.variants || [])[0];
+                var meta = state.product.metadata || {};
+                if (!state.variant || meta.purchase_mode !== 'checkout') {
+                    throw new Error('Esta peça é vendida por consulta no WhatsApp.');
+                }
+                var stock = state.variant.inventory_quantity;
+                if (state.variant.manage_inventory !== false && typeof stock === 'number' && stock < qty) {
+                    throw new Error('Peça esgotada no momento.');
+                }
+                return createCart(qty);
+            });
+        });
+
+        prepare.then(function () {
             return Promise.all([loadShippingOptions(), loadProviders()]);
         }).then(function () {
             renderItem();
@@ -340,6 +391,10 @@
             byId('checkoutLayout').hidden = false;
             byId('checkoutForm').addEventListener('submit', submit);
         }).catch(function (error) {
+            if (error && error.message === 'EMPTY_CART') {
+                window.location.replace('carrinho.html');
+                return;
+            }
             byId('checkoutLoading').hidden = true;
             showError(error.message || 'Não foi possível carregar o checkout.');
         });
