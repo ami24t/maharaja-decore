@@ -64,7 +64,6 @@
                         <li class="nav-item"><a class="nav-link" href="colecoes/estatuas.html">Estátuas</a></li>
                         <li class="nav-item"><a class="nav-link" href="colecoes/sagrado.html">Coleções</a></li>
                         <li class="nav-item"><a class="nav-link scroll" href="#collection">Peças</a></li>
-                        <li class="nav-item"><a class="nav-link scroll" href="#inspiration">Inspiração</a></li>
                         <li class="nav-item"><a class="nav-link scroll" href="#store">Loja</a></li>
                         <li class="nav-item"><a class="nav-link scroll" href="#consultation">Contato</a></li>
                     </ul>
@@ -130,36 +129,6 @@
                         </div>
                     </div>
                     <div class="md-hero-switcher" role="tablist" aria-label="Escolha a escultura em 3D"></div>
-                </div>
-            </section>
-
-            <section class="md-arrivals" aria-label="Ambientes editoriais Maharaja Decor">
-                <div class="container">
-                    <div class="md-arrivals-shell">
-                        <div class="md-arrivals-copy">
-                            <span class="md-eyebrow">Álbum de design</span>
-                            <h2>Ambientes para vender desejo.</h2>
-                            <p>A Maharaja pode inspirar casas inteiras: sala com Ganesha, jardim com Lakshmi, piscina com Buda e entrada com elefantes.</p>
-                        </div>
-                        <div class="md-arrivals-rail">
-                            <a class="md-arrival-item" href="ambientes/sala.html">
-                                <img src="assets/img/maharaja/editorial/living-ganesha.jpg" alt="Sala brasileira com Ganesha em composição decorativa">
-                                <span>Sala com Ganesha</span>
-                            </a>
-                            <a class="md-arrival-item" href="ambientes/jardim.html">
-                                <img src="assets/img/maharaja/editorial/garden-lakshmi.jpg" alt="Jardim tropical com fonte de Lakshmi">
-                                <span>Jardim com Lakshmi</span>
-                            </a>
-                            <a class="md-arrival-item" href="ambientes/piscina.html">
-                                <img src="assets/img/maharaja/editorial/pool-buda.jpg" alt="Área de piscina com Buda e lanternas">
-                                <span>Piscina com Buda</span>
-                            </a>
-                            <a class="md-arrival-item" href="ambientes/entrada.html">
-                                <img src="assets/img/maharaja/editorial/entrance-elephants.jpg" alt="Entrada de casa com elefantes pintados à mão">
-                                <span>Entrada com elefantes</span>
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -313,360 +282,79 @@
                     <div class="md-section-heading md-section-heading-split">
                         <div>
                             <span class="md-eyebrow">Peças em destaque</span>
-                            <h2>Peças protagonistas para compor ambientes.</h2>
+                            <h2>Quatro presenças para começar.</h2>
                         </div>
-                        <p>Uma seleção orientada por uso: escolha a peça, veja onde ela funciona melhor e consulte disponibilidade pelo WhatsApp, Instagram ou loja física.</p>
+                        <p>Uma amostra da curadoria: peças com preço e compra online, ou consulta direta pelo WhatsApp. O catálogo completo vive na Loja.</p>
                     </div>
 
-                    <div class="md-collection-editorial">
-                        <div>
-                            <span class="md-eyebrow">Curadoria rápida</span>
-                            <strong>Primeiro escolha o papel da peça no ambiente.</strong>
-                        </div>
-                        <ul>
-                            <li><i class="fas fa-crown" aria-hidden="true"></i>Protagonista visual</li>
-                            <li><i class="fas fa-water" aria-hidden="true"></i>Água e jardim</li>
-                            <li><i class="fas fa-door-open" aria-hidden="true"></i>Boas-vindas</li>
-                            <li><i class="fas fa-leaf" aria-hidden="true"></i>Ritual diário</li>
-                        </ul>
-                    </div>
-
-                    <div class="md-shop-toolbar" aria-label="Filtros de produtos">
-                        <div class="md-search-wrap">
-                            <i class="fas fa-search" aria-hidden="true"></i>
-                            <input id="productSearch" type="search" placeholder="Buscar peça" aria-label="Buscar produtos">
-                        </div>
-                        <div class="md-filter-group" role="group" aria-label="Filtrar produtos por categoria">
-                            <button class="filter-btn active" type="button" data-filter="all">Todos</button>
-                            <button class="filter-btn" type="button" data-filter="decor">Decoração</button>
-                            <button class="filter-btn" type="button" data-filter="fontes">Fontes</button>
-                            <button class="filter-btn" type="button" data-filter="sagrado">Sagrado</button>
-                            <button class="filter-btn" type="button" data-filter="artesanato">Artesanato</button>
-                            <button class="filter-btn" type="button" data-filter="aromas">Aromas</button>
-                        </div>
-                        <label class="md-sort-wrap">
-                            <span>Ordenar</span>
-                            <select id="sortProducts" aria-label="Ordenar produtos">
-                                <option value="featured">Destaques</option>
-                                <option value="newest">Mais recentes</option>
-                                <option value="alpha-az">Nome A-Z</option>
-                                <option value="alpha-za">Nome Z-A</option>
-                            </select>
-                        </label>
-                    </div>
-
-                    <div class="md-shop-summary">
-                        <span id="visibleCount">8 peças visíveis</span>
-                        <a id="selectionWhatsApp" href="https://wa.me/5561991458998?text=Ol%C3%A1%2C%20vi%20o%20cat%C3%A1logo%20da%20Maharaja%20Decor%20e%20quero%20consultar%20algumas%20pe%C3%A7as." target="_blank" rel="noopener">
-                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                            Consultar seleção
-                        </a>
-                    </div>
-
-                    <div class="md-product-grid" id="productGrid" aria-live="polite">
-                        <article class="product-card" data-category="decor fontes sagrado" data-name="Fonte de Lakshmi" data-slug="fonte-de-lakshmi" data-order="2" data-new="12">
-                            <a class="product-media" href="produto/fonte-de-lakshmi.html" aria-label="Ver Fonte de Lakshmi">
-                                <img src="assets/img/maharaja/products/fonte-lakshmi.jpg" alt="Fonte de Lakshmi em pó de mármore para área externa" loading="lazy" decoding="async">
-                            </a>
-                            <div class="product-body">
-                                <div class="product-card-bar">
-                                    <span class="product-badge">Área externa</span>
-                                    <button class="icon-btn product-heart" type="button" aria-label="Salvar Fonte de Lakshmi"><i class="far fa-heart" aria-hidden="true"></i></button>
-                                </div>
-                                <span class="product-meta">Fonte • Lakshmi</span>
-                                <h3>Fonte de Lakshmi</h3>
-                                <p>Peça em pó de mármore, indicada também para área externa.</p>
-                                <div class="product-scene-tags" aria-label="Ambientes recomendados">
-                                    <span>Jardim</span>
-                                    <span>Varanda</span>
-                                    <span>Água</span>
-                                </div>
-                                <div class="product-foot">
-                                    <strong>Sob consulta</strong>
-                                    <span><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn md-btn md-btn-compact add-cart" type="button"><i class="fas fa-plus" aria-hidden="true"></i>Lista</button>
-                                    <a class="btn md-btn md-btn-ghost product-details-link" href="produto/fonte-de-lakshmi.html">Detalhes</a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="product-card" data-category="decor iluminacao presentes" data-name="Luminária turca" data-slug="luminaria-turca" data-order="7" data-new="5">
-                            <a class="product-media" href="produto/luminaria-turca.html" aria-label="Ver Luminária turca">
-                                <img src="assets/img/maharaja/products/luminaria-turca.jpg" alt="Luminária turca colorida para sala" loading="lazy" decoding="async">
-                            </a>
-                            <div class="product-body">
-                                <div class="product-card-bar">
-                                    <span class="product-badge">Iluminação</span>
-                                    <button class="icon-btn product-heart" type="button" aria-label="Salvar Luminária turca"><i class="far fa-heart" aria-hidden="true"></i></button>
-                                </div>
-                                <span class="product-meta">Iluminação</span>
-                                <h3>Luminária turca</h3>
-                                <p>Peça de luz colorida para transformar sala, quarto ou cantinho de leitura.</p>
-                                <div class="product-scene-tags" aria-label="Ambientes recomendados">
-                                    <span>Sala</span>
-                                    <span>Luz</span>
-                                    <span>Noite</span>
-                                </div>
-                                <div class="product-foot">
-                                    <strong>Sob consulta</strong>
-                                    <span><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn md-btn md-btn-compact add-cart" type="button"><i class="fas fa-plus" aria-hidden="true"></i>Lista</button>
-                                    <a class="btn md-btn md-btn-ghost product-details-link" href="produto/luminaria-turca.html">Detalhes</a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="product-card" data-category="decor artesanato moveis" data-name="Banco de madeira pintado à mão" data-slug="banco-pintado-a-mao" data-order="6" data-new="7">
-                            <a class="product-media" href="produto/banco-pintado-a-mao.html" aria-label="Ver Banco de madeira pintado à mão">
-                                <img src="assets/img/maharaja/products/banco-madeira.jpg" alt="Banco ou decoração de madeira maciça pintada à mão na Índia" loading="lazy" decoding="async">
-                            </a>
-                            <div class="product-body">
-                                <div class="product-card-bar">
-                                    <span class="product-badge">Pintado à mão</span>
-                                    <button class="icon-btn product-heart" type="button" aria-label="Salvar Banco de madeira pintado à mão"><i class="far fa-heart" aria-hidden="true"></i></button>
-                                </div>
-                                <span class="product-meta">Madeira maciça</span>
-                                <h3>Banco pintado à mão</h3>
-                                <p>Banco ou peça decorativa de madeira maciça, com pintura artesanal colorida.</p>
-                                <div class="product-scene-tags" aria-label="Ambientes recomendados">
-                                    <span>Aparador</span>
-                                    <span>Cor</span>
-                                    <span>Madeira</span>
-                                </div>
-                                <div class="product-foot">
-                                    <strong>Sob consulta</strong>
-                                    <span><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn md-btn md-btn-compact add-cart" type="button"><i class="fas fa-plus" aria-hidden="true"></i>Lista</button>
-                                    <a class="btn md-btn md-btn-ghost product-details-link" href="produto/banco-pintado-a-mao.html">Detalhes</a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="product-card product-card-featured" data-category="decor sagrado presentes" data-name="Ganesha de resina" data-slug="ganesha-de-resina" data-order="1" data-new="13">
+                    <div class="md-product-grid md-destaques-grid">
+                        <article class="product-card" data-slug="ganesha-de-resina">
                             <a class="product-media" href="produto/ganesha-de-resina.html" aria-label="Ver Ganesha de resina">
                                 <img src="assets/img/maharaja/products/ganesha-resina.jpg" alt="Ganesha de resina pintado à mão" loading="lazy" decoding="async">
                             </a>
                             <div class="product-body">
-                                <div class="product-card-bar">
-                                    <span class="product-badge">Sagrado</span>
-                                    <button class="icon-btn product-heart" type="button" aria-label="Salvar Ganesha de resina"><i class="far fa-heart" aria-hidden="true"></i></button>
-                                </div>
-                                <span class="product-meta">Ganesha</span>
+                                <span class="product-meta">Sagrado</span>
                                 <h3>Ganesha de resina</h3>
-                                <p>Imagem pintada à mão para altar, presente ou espaço de proteção.</p>
-                                <div class="product-scene-tags" aria-label="Ambientes recomendados">
-                                    <span>Sala</span>
-                                    <span>Entrada</span>
-                                    <span>Altar</span>
-                                </div>
-                                <div class="product-foot">
-                                    <strong>Sob consulta</strong>
-                                    <span><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</span>
-                                </div>
+                                <div class="product-foot"><strong>Sob consulta</strong></div>
                                 <div class="product-actions">
-                                    <button class="btn md-btn md-btn-compact add-cart" type="button"><i class="fas fa-plus" aria-hidden="true"></i>Lista</button>
-                                    <a class="btn md-btn md-btn-ghost product-details-link" href="produto/ganesha-de-resina.html">Detalhes</a>
+                                    <a class="btn md-btn md-btn-ghost product-details-link" href="produto/ganesha-de-resina.html">Ver peça</a>
                                 </div>
                             </div>
                         </article>
-
-                        <article class="product-card" data-category="aromas presentes sagrado" data-name="Padmini Incenso Dhoop" data-slug="padmini-incenso-dhoop" data-order="8" data-new="6">
-                            <a class="product-media" href="produto/padmini-incenso-dhoop.html" aria-label="Ver Padmini Incenso Dhoop">
-                                <img src="assets/img/maharaja/products/incenso-padmini-dhoop.jpg" alt="Padmini incenso Dhoop de masala" loading="lazy" decoding="async">
+                        <article class="product-card" data-slug="shiva-meditando">
+                            <a class="product-media" href="loja/peca.html?slug=shiva-meditando" aria-label="Ver Shiva meditando">
+                                <img src="assets/img/maharaja/products/shiva-meditando.jpg" alt="Estátua de Shiva meditando" loading="lazy" decoding="async">
                             </a>
                             <div class="product-body">
-                                <div class="product-card-bar">
-                                    <span class="product-badge">Aromas</span>
-                                    <button class="icon-btn product-heart" type="button" aria-label="Salvar Padmini Incenso Dhoop"><i class="far fa-heart" aria-hidden="true"></i></button>
-                                </div>
-                                <span class="product-meta">Incenso de masala</span>
-                                <h3>Padmini Incenso Dhoop</h3>
-                                <p>Incensos pequenos com porta-incenso montado na caixa.</p>
-                                <div class="product-scene-tags" aria-label="Ambientes recomendados">
-                                    <span>Ritual</span>
-                                    <span>Presente</span>
-                                    <span>Aroma</span>
-                                </div>
-                                <div class="product-foot">
-                                    <strong>Sob consulta</strong>
-                                    <span><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</span>
-                                </div>
+                                <span class="product-meta">Sagrado • Estátuas</span>
+                                <h3>Shiva meditando</h3>
+                                <div class="product-foot"><strong>Sob consulta</strong></div>
                                 <div class="product-actions">
-                                    <button class="btn md-btn md-btn-compact add-cart" type="button"><i class="fas fa-plus" aria-hidden="true"></i>Lista</button>
-                                    <a class="btn md-btn md-btn-ghost product-details-link" href="produto/padmini-incenso-dhoop.html">Detalhes</a>
+                                    <a class="btn md-btn md-btn-ghost product-details-link" href="loja/peca.html?slug=shiva-meditando">Ver peça</a>
                                 </div>
                             </div>
                         </article>
-
-                        <article class="product-card" data-category="decor sagrado presentes" data-name="Buda de Bali" data-slug="buda-de-bali" data-order="3" data-new="11">
+                        <article class="product-card" data-slug="buda-de-bali">
                             <a class="product-media" href="produto/buda-de-bali.html" aria-label="Ver Buda de Bali">
                                 <img src="assets/img/maharaja/products/buda-bali.jpg" alt="Estátua de Buda em resina de Bali" loading="lazy" decoding="async">
                             </a>
                             <div class="product-body">
-                                <div class="product-card-bar">
-                                    <span class="product-badge">Bali</span>
-                                    <button class="icon-btn product-heart" type="button" aria-label="Salvar Buda de Bali"><i class="far fa-heart" aria-hidden="true"></i></button>
-                                </div>
-                                <span class="product-meta">Bali • Resina</span>
+                                <span class="product-meta">Bali - Resina</span>
                                 <h3>Buda de Bali</h3>
-                                <p>Estátua em resina para ambientes tranquilos, entradas e altares.</p>
-                                <div class="product-scene-tags" aria-label="Ambientes recomendados">
-                                    <span>Piscina</span>
-                                    <span>Jardim</span>
-                                    <span>Silêncio</span>
-                                </div>
-                                <div class="product-foot">
-                                    <strong>Sob consulta</strong>
-                                    <span><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</span>
-                                </div>
+                                <div class="product-foot"><strong>Sob consulta</strong></div>
                                 <div class="product-actions">
-                                    <button class="btn md-btn md-btn-compact add-cart" type="button"><i class="fas fa-plus" aria-hidden="true"></i>Lista</button>
-                                    <a class="btn md-btn md-btn-ghost product-details-link" href="produto/buda-de-bali.html">Detalhes</a>
+                                    <a class="btn md-btn md-btn-ghost product-details-link" href="produto/buda-de-bali.html">Ver peça</a>
                                 </div>
                             </div>
                         </article>
-
-                        <article class="product-card" data-category="decor artesanato presentes" data-name="Elefantes de madeira" data-slug="elefantes-de-madeira" data-order="4" data-new="10">
-                            <a class="product-media" href="produto/elefantes-de-madeira.html" aria-label="Ver Elefantes de madeira">
-                                <img src="assets/img/maharaja/products/elefantes-madeira.jpg" alt="Elefantes de madeira pintados à mão" loading="lazy" decoding="async">
+                        <article class="product-card" data-slug="luminaria-turca">
+                            <a class="product-media" href="produto/luminaria-turca.html" aria-label="Ver Luminária turca">
+                                <img src="assets/img/maharaja/products/luminaria-turca.jpg" alt="Luminária turca colorida" loading="lazy" decoding="async">
                             </a>
                             <div class="product-body">
-                                <div class="product-card-bar">
-                                    <span class="product-badge">Madeira</span>
-                                    <button class="icon-btn product-heart" type="button" aria-label="Salvar Elefantes de madeira"><i class="far fa-heart" aria-hidden="true"></i></button>
-                                </div>
-                                <span class="product-meta">Madeira pintada</span>
-                                <h3>Elefantes de madeira</h3>
-                                <p>Peças em vários tamanhos, feitas e pintadas à mão.</p>
-                                <div class="product-scene-tags" aria-label="Ambientes recomendados">
-                                    <span>Entrada</span>
-                                    <span>Aparador</span>
-                                    <span>Boas-vindas</span>
-                                </div>
-                                <div class="product-foot">
-                                    <strong>Sob consulta</strong>
-                                    <span><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</span>
-                                </div>
+                                <span class="product-meta">Iluminação</span>
+                                <h3>Luminária turca</h3>
+                                <div class="product-foot"><strong>Sob consulta</strong></div>
                                 <div class="product-actions">
-                                    <button class="btn md-btn md-btn-compact add-cart" type="button"><i class="fas fa-plus" aria-hidden="true"></i>Lista</button>
-                                    <a class="btn md-btn md-btn-ghost product-details-link" href="produto/elefantes-de-madeira.html">Detalhes</a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="product-card" data-category="decor presentes" data-name="Peças decorativas para sala" data-slug="pecas-decorativas" data-order="5" data-new="9">
-                            <a class="product-media" href="produto/pecas-decorativas.html" aria-label="Ver Peças decorativas">
-                                <img src="assets/img/maharaja/products/hero-altar.jpg" alt="Peças decorativas pretas em mesa de sala" loading="lazy" decoding="async">
-                            </a>
-                            <div class="product-body">
-                                <div class="product-card-bar">
-                                    <span class="product-badge">Casa</span>
-                                    <button class="icon-btn product-heart" type="button" aria-label="Salvar Peças decorativas para sala"><i class="far fa-heart" aria-hidden="true"></i></button>
-                                </div>
-                                <span class="product-meta">Casa • Presente</span>
-                                <h3>Peças decorativas</h3>
-                                <p>Objetos para mesa, aparador e sala, com acabamento elegante.</p>
-                                <div class="product-scene-tags" aria-label="Ambientes recomendados">
-                                    <span>Mesa</span>
-                                    <span>Sala</span>
-                                    <span>Presente</span>
-                                </div>
-                                <div class="product-foot">
-                                    <strong>Sob consulta</strong>
-                                    <span><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="btn md-btn md-btn-compact add-cart" type="button"><i class="fas fa-plus" aria-hidden="true"></i>Lista</button>
-                                    <a class="btn md-btn md-btn-ghost product-details-link" href="produto/pecas-decorativas.html">Detalhes</a>
+                                    <a class="btn md-btn md-btn-ghost product-details-link" href="produto/luminaria-turca.html">Ver peça</a>
                                 </div>
                             </div>
                         </article>
                     </div>
 
-                    <p id="emptyProducts" class="md-empty-state" hidden>Nenhuma peça encontrada com esse filtro.</p>
+                    <div class="md-destaques-cta">
+                        <a class="btn md-btn md-destaques-catalogo" href="loja/index.html">
+                            <i class="fas fa-store" aria-hidden="true"></i>
+                            Ver catálogo completo
+                        </a>
+                        <a class="btn md-btn md-btn-ghost" href="https://wa.me/5561991458998" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                            Consultar no WhatsApp
+                        </a>
+                    </div>
                 </div>
             </section>
 
-            <section id="inspiration" class="section md-section md-inspiration">
-                <div class="container">
-                    <div class="md-section-heading md-section-heading-split">
-                        <div>
-                            <span class="md-eyebrow">Inspiração para a casa</span>
-                            <h2>Um atlas de composição para casas com presença.</h2>
-                        </div>
-                        <p>A Maharaja vende melhor quando mostra como a peça entra na vida do cliente: escultura, luz, água, aroma, madeira e plantas formando uma cena completa.</p>
-                    </div>
-
-                    <div class="md-inspiration-atlas">
-                        <article class="md-composition-stage">
-                            <img src="assets/img/maharaja/editorial/garden-lakshmi.jpg" alt="Jardim tropical com fonte de Lakshmi e objetos de curadoria">
-                            <span class="look-tag tag-one"><i class="fas fa-water" aria-hidden="true"></i>Água em movimento</span>
-                            <span class="look-tag tag-two"><i class="fas fa-leaf" aria-hidden="true"></i>Folhagem como moldura</span>
-                            <span class="look-tag tag-three"><i class="fas fa-gem" aria-hidden="true"></i>Latão, pedra e flor</span>
-                            <div class="md-stage-caption">
-                                <span class="md-eyebrow">Cena-guia</span>
-                                <h3>Comece por uma peça de presença e construa a atmosfera ao redor.</h3>
-                            </div>
-                        </article>
-
-                        <aside class="md-curation-panel">
-                            <span class="md-eyebrow">Fórmula Maharaja</span>
-                            <h3>Da peça ao ambiente completo.</h3>
-                            <p>O site deve ensinar o olhar: onde posicionar, quais materiais combinar e como transformar um objeto em narrativa de casa.</p>
-                            <div class="md-layer-stack" aria-label="Camadas de composição">
-                                <div>
-                                    <i class="fas fa-monument" aria-hidden="true"></i>
-                                    <strong>Escultura</strong>
-                                    <span>Define o centro visual e simbólico.</span>
-                                </div>
-                                <div>
-                                    <i class="fas fa-water" aria-hidden="true"></i>
-                                    <strong>Elemento vivo</strong>
-                                    <span>Água, planta, flor ou aroma dá movimento.</span>
-                                </div>
-                                <div>
-                                    <i class="fas fa-grip-lines" aria-hidden="true"></i>
-                                    <strong>Base tátil</strong>
-                                    <span>Madeira, pedra, tecido e latão criam profundidade.</span>
-                                </div>
-                            </div>
-                            <a class="btn md-btn md-btn-primary scroll" href="#collection">
-                                <i class="fas fa-compass" aria-hidden="true"></i>
-                                Explorar peças
-                            </a>
-                        </aside>
-                    </div>
-
-                    <div class="md-recipe-grid" aria-label="Receitas de ambiente">
-                        <article>
-                            <span>Sala</span>
-                            <strong>Ganesha + madeira + incenso</strong>
-                            <p>Uma composição de boas-vindas para aparadores, halls e salas de convivência.</p>
-                        </article>
-                        <article>
-                            <span>Jardim</span>
-                            <strong>Lakshmi + água + folhagem</strong>
-                            <p>O ponto de pausa visual para varanda, jardim, corredor externo ou área de meditação.</p>
-                        </article>
-                        <article>
-                            <span>Piscina</span>
-                            <strong>Buda + lanterna + pedra</strong>
-                            <p>Uma leitura mais resort, silenciosa e sofisticada para áreas abertas.</p>
-                        </article>
-                        <article>
-                            <span>Entrada</span>
-                            <strong>Elefantes + flores + latão</strong>
-                            <p>A chegada vira assinatura: cor, proteção e memória logo no primeiro olhar.</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
 
             <section id="store" class="section md-section md-artisans">
                 <div class="container">
@@ -741,34 +429,29 @@
                     <div class="md-platform-grid">
                         <div class="md-platform-copy">
                             <span class="md-eyebrow">Como comprar</span>
-                            <h2>Escolha a peça e fale direto com a loja.</h2>
-                            <p>Consulte disponibilidade, valores, formas de pagamento, envio por CEP ou retirada em Alto Paraíso de Goiás.</p>
-                            <a class="btn md-btn md-btn-outline scroll" href="#consultation">
-                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                                Chamar a Maharaja
+                            <h2>Do catálogo à sua casa, em três passos.</h2>
+                            <p>Compre online com pagamento seguro, ou fale direto com a loja para uma compra consultiva — os dois caminhos funcionam.</p>
+                            <a class="btn md-btn md-btn-outline" href="loja/index.html">
+                                <i class="fas fa-store" aria-hidden="true"></i>
+                                Abrir o catálogo
                             </a>
                         </div>
 
-                        <div class="md-roadmap" aria-label="Formas de atendimento e compra">
+                        <div class="md-roadmap" aria-label="Como comprar na Maharaja">
                             <div>
-                                <i class="fab fa-whatsapp" aria-hidden="true"></i>
-                                <strong>Consulta pelo WhatsApp</strong>
-                                <span>Envie a peça escolhida e receba atendimento com detalhes.</span>
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                                <strong>1 · Escolha no catálogo</strong>
+                                <span>Veja fotos, preços, modelos em 3D e disponibilidade em tempo real.</span>
                             </div>
                             <div>
                                 <i class="fas fa-qrcode" aria-hidden="true"></i>
-                                <strong>Pix e cartão</strong>
-                                <span>Combine a melhor forma de pagamento com a loja.</span>
+                                <strong>2 · Pague online ou consulte</strong>
+                                <span>Pix, cartão e boleto na página segura do Mercado Pago — ou WhatsApp para peças sob consulta.</span>
                             </div>
                             <div>
                                 <i class="fas fa-truck" aria-hidden="true"></i>
-                                <strong>Envio ou retirada</strong>
-                                <span>Receba por transportadora ou retire em Alto Paraíso.</span>
-                            </div>
-                            <div>
-                                <i class="fab fa-instagram" aria-hidden="true"></i>
-                                <strong>Instagram e loja</strong>
-                                <span>Acompanhe novidades e peças recém-chegadas pelas redes.</span>
+                                <strong>3 · Retire ou receba</strong>
+                                <span>Retirada gratuita na loja em Alto Paraíso de Goiás, ou envio combinado.</span>
                             </div>
                         </div>
                     </div>

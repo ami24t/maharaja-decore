@@ -4124,3 +4124,45 @@ ol {
         transform: none;
     }
 }
+
+/* ============================================================
+   Destaques (home) — compact highlight row replacing the old
+   full vitrine; all browsing now lives in loja/.
+   ============================================================ */
+.md-destaques-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.md-destaques-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 34px;
+}
+
+.md-destaques-catalogo {
+    background: var(--md-green);
+    border: 1px solid var(--md-green);
+    color: var(--md-ivory);
+    min-width: 260px;
+}
+
+.md-destaques-catalogo:hover,
+.md-destaques-catalogo:focus {
+    background: var(--md-green-soft);
+    border-color: var(--md-green-soft);
+    color: var(--md-ivory);
+}
+
+@media (max-width: 992px) {
+    .md-destaques-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .md-destaques-grid {
+        grid-template-columns: 1fr;
+    }
+}
