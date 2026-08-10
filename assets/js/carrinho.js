@@ -120,8 +120,32 @@
         });
     }
 
+    // Lines added before product thumbnails existed carry a null snapshot;
+    // backfill from the live catalog so every line shows its real photo.
+    function enrichThumbnails(cart) {
+        if (!cart || !(cart.items || []).some(function (i) { return !i.thumbnail; })) {
+            return Promise.resolve(cart);
+        }
+        var config = window.MaharajaCommerce || {};
+        var apiUrl = config.apiUrl || 'https://backend-production-462f.up.railway.app';
+        var key = config.publishableKey ||
+            'pk_bd7d54b46835285f4a86c89e8fde5e3b2a3fb81bdb5f2d60cc10478da8d2f415';
+        return fetch(apiUrl + '/store/products?limit=100&fields=id,thumbnail', {
+            headers: { 'x-publishable-api-key': key }
+        }).then(function (r) { return r.json(); }).then(function (data) {
+            var byProductId = {};
+            (data.products || []).forEach(function (p) { byProductId[p.id] = p.thumbnail; });
+            cart.items.forEach(function (item) {
+                if (!item.thumbnail && byProductId[item.product_id]) {
+                    item.thumbnail = byProductId[item.product_id];
+                }
+            });
+            return cart;
+        }).catch(function () { return cart; });
+    }
+
     function load() {
-        window.MaharajaCart.getCart().then(render).catch(function () {
+        window.MaharajaCart.getCart().then(enrichThumbnails).then(render).catch(function () {
             byId('carrinhoLoading').hidden = true;
             byId('carrinhoEmpty').hidden = false;
         });

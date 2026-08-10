@@ -4,13 +4,40 @@
    imagery; here they sit on the ivory background. */
 .md-loja-page .md-section-heading h1,
 .md-loja-page .md-section-heading h2,
-.md-peca-page .md-section-heading h2 {
+.md-peca-page .md-section-heading h2,
+.md-carrinho-page .md-section-heading h1,
+.md-checkout-page .md-section-heading h1,
+.md-pedido-page .md-section-heading h1 {
     color: var(--md-green-deep);
 }
 
 .md-loja-page .md-section-heading p,
-.md-peca-page .md-section-heading p {
+.md-peca-page .md-section-heading p,
+.md-carrinho-page .md-section-heading p,
+.md-checkout-page .md-section-heading p {
     color: var(--md-ink-soft);
+}
+
+/* Solid primary styling for commerce CTAs — base .md-btn carries no background
+   by design (style.css expects a variant class on every solid button). */
+#checkoutSubmit,
+#carrinhoCheckout,
+#pecaBuy,
+#mdBuyNow,
+.md-add-to-cart {
+    background: var(--md-green);
+    border: 1px solid var(--md-green);
+    color: var(--md-ivory);
+}
+
+#checkoutSubmit:hover, #checkoutSubmit:focus,
+#carrinhoCheckout:hover, #carrinhoCheckout:focus,
+#pecaBuy:hover, #pecaBuy:focus,
+#mdBuyNow:hover, #mdBuyNow:focus,
+.md-add-to-cart:hover, .md-add-to-cart:focus {
+    background: var(--md-green-soft);
+    border-color: var(--md-green-soft);
+    color: var(--md-ivory);
 }
 
 .md-loja-toolbar {
