@@ -197,6 +197,51 @@
         }).catch(function () { /* related is optional */ });
     }
 
+    // Per-product canonical + OG + JSON-LD (helps Google, which renders JS;
+    // WhatsApp link previews still see the static default tags).
+    function updateSeo(product, price, soldOut) {
+        var pageUrl = 'https://www.maharajadecor.com.br/loja/peca.html?slug=' +
+            encodeURIComponent(product.handle);
+        var image = imageUrl(product);
+        if (!/^https?:\/\//.test(image)) {
+            image = 'https://www.maharajadecor.com.br/' + image.replace(/^(\.\.\/)+/, '');
+        }
+
+        var canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.setAttribute('href', pageUrl);
+        [['og:title', product.title + ' | Maharaja Decor'],
+         ['og:description', (product.description || '').slice(0, 200)],
+         ['og:url', pageUrl],
+         ['og:image', image]].forEach(function (pair) {
+            var el = document.querySelector('meta[property="' + pair[0] + '"]');
+            if (el && pair[1]) el.setAttribute('content', pair[1]);
+        });
+
+        if (document.getElementById('mdProductSchema')) return;
+        var schema = {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: product.title,
+            image: image,
+            description: (product.description || '').slice(0, 300),
+            brand: { '@type': 'Brand', name: 'Maharaja Decor' }
+        };
+        if (typeof price === 'number') {
+            schema.offers = {
+                '@type': 'Offer',
+                priceCurrency: 'BRL',
+                price: price,
+                availability: soldOut ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+                url: pageUrl
+            };
+        }
+        var script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.id = 'mdProductSchema';
+        script.textContent = JSON.stringify(schema);
+        document.head.appendChild(script);
+    }
+
     function render(regionId, product) {
         var meta = product.metadata || {};
         if (meta.editorial) {
@@ -216,6 +261,7 @@
         if (metaDescription && product.description) {
             metaDescription.setAttribute('content', product.description.slice(0, 160));
         }
+        updateSeo(product, isCheckout ? price : null, soldOut);
 
         byId('pecaCrumb').textContent = product.title;
         byId('pecaTitle').textContent = product.title;

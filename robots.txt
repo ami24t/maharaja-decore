@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /loja/carrinho.html
+Disallow: /loja/checkout.html
+Disallow: /loja/pedido.html
+
+Sitemap: https://www.maharajadecor.com.br/sitemap.xml

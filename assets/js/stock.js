@@ -142,6 +142,45 @@
         }
     }
 
+    // Live-price Product JSON-LD on editorial product pages: injected at runtime
+    // so Google (which renders JS) always sees the current price/availability —
+    // never a stale hardcoded value.
+    function injectProductSchema(items) {
+        var slug = body.getAttribute('data-product-slug');
+        if (!slug || !items[slug] || document.getElementById('mdProductSchema')) return;
+        var entry = items[slug];
+
+        var ogImage = document.querySelector('meta[property="og:image"]');
+        var canonical = document.querySelector('link[rel="canonical"]');
+        var metaDesc = document.querySelector('meta[name="description"]');
+
+        var schema = {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: entry.title || document.title.split('|')[0].trim(),
+            image: ogImage ? ogImage.getAttribute('content') : undefined,
+            description: metaDesc ? metaDesc.getAttribute('content') : undefined,
+            brand: { '@type': 'Brand', name: 'Maharaja Decor' }
+        };
+        if (entry.mode === 'checkout' && typeof entry.price === 'number') {
+            schema.offers = {
+                '@type': 'Offer',
+                priceCurrency: 'BRL',
+                price: entry.price,
+                availability: entry.state === 'in_stock'
+                    ? 'https://schema.org/InStock'
+                    : 'https://schema.org/OutOfStock',
+                url: canonical ? canonical.getAttribute('href') : window.location.href
+            };
+        }
+
+        var script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.id = 'mdProductSchema';
+        script.textContent = JSON.stringify(schema);
+        document.head.appendChild(script);
+    }
+
     // ---- Medusa Store API (primary source) --------------------------------
 
     function apiFetch(path) {
@@ -240,6 +279,7 @@
                 decorate(items);
                 paintPrices(items);
                 injectBuyButton(items);
+                injectProductSchema(items);
             })
             .catch(function () { /* fail open — leave the catalog untouched */ });
     }
