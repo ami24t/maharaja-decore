@@ -119,7 +119,7 @@
         var link = byId('productWhatsApp');
         if (!link) return;
         var message = 'Olá, vi a peça "' + product.title + '" no catálogo da Maharaja Decor e quero consultar disponibilidade, valor, tamanho e envio.';
-        link.href = 'https://wa.me/5561991334423?text=' + encodeURIComponent(message);
+        link.href = 'https://wa.me/5561991458998?text=' + encodeURIComponent(message);
     }
 
     var MODEL_VIEWER_SRC = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';

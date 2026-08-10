@@ -191,7 +191,7 @@
             stateHost.hidden = list.length > 0;
             if (!list.length) {
                 stateHost.innerHTML = '<p>Nenhuma peça encontrada com esses filtros. ' +
-                    'Limpe a busca ou <a href="https://wa.me/5561991334423" target="_blank" rel="noopener">consulte a loja no WhatsApp</a>.</p>';
+                    'Limpe a busca ou <a href="https://wa.me/5561991458998" target="_blank" rel="noopener">consulte a loja no WhatsApp</a>.</p>';
             }
         }
     }
@@ -214,7 +214,7 @@
             stateHost.innerHTML = [
                 '<p><strong>O catálogo completo está fora do ar neste momento.</strong></p>',
                 '<p>Veja a <a href="' + assetBase + 'index.html#collection">vitrine de peças curadas</a> ',
-                'ou <a href="https://wa.me/5561991334423" target="_blank" rel="noopener">fale com a loja no WhatsApp</a>.</p>'
+                'ou <a href="https://wa.me/5561991458998" target="_blank" rel="noopener">fale com a loja no WhatsApp</a>.</p>'
             ].join('');
         }
     }

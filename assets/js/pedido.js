@@ -14,7 +14,7 @@
     var PUBLISHABLE_KEY = config.publishableKey ||
         'pk_bd7d54b46835285f4a86c89e8fde5e3b2a3fb81bdb5f2d60cc10478da8d2f415';
     var CART_KEY = 'md-checkout-cart';
-    var WHATSAPP = 'https://wa.me/5561991334423';
+    var WHATSAPP = 'https://wa.me/5561991458998';
 
     function byId(id) { return document.getElementById(id); }
 

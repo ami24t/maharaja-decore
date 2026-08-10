@@ -152,7 +152,7 @@
             drawerGroup('Coleções', colecoes),
             '<section class="md-drawer-group md-drawer-service">',
             '<h3>Atendimento</h3>',
-            '<a href="https://wa.me/5561991334423" target="_blank" rel="noopener">' + icon('fa-whatsapp') + '<span><strong>Consultar no WhatsApp</strong><small>Disponibilidade, valores, tamanhos e envio.</small></span></a>',
+            '<a href="https://wa.me/5561991458998" target="_blank" rel="noopener">' + icon('fa-whatsapp') + '<span><strong>Consultar no WhatsApp</strong><small>Disponibilidade, valores, tamanhos e envio.</small></span></a>',
             '<a href="https://www.instagram.com/maharaja_decor/" target="_blank" rel="noopener">' + icon('fa-instagram') + '<span><strong>Instagram</strong><small>Conteúdo real da loja e novidades.</small></span></a>',
             '</section>',
             '</nav>',
@@ -287,7 +287,7 @@
             '<h3>Contato</h3>',
             '<ul>',
             '<li>Av. Ary Valadão, 1383</li>',
-            '<li><a href="https://wa.me/5561991334423" target="_blank" rel="noopener">(61) 99133-4423</a></li>',
+            '<li><a href="https://wa.me/5561991458998" target="_blank" rel="noopener">(61) 99145-8998</a></li>',
             '<li><a href="mailto:sushant@maharajadecor.com.br">sushant@maharajadecor.com.br</a></li>',
             '</ul>',
             '</div>',
@@ -368,7 +368,7 @@
             '<span class="md-topbar-note">' + icon('fa-map-marker-alt') + 'Alto Paraíso de Goiás · Chapada dos Veadeiros</span>',
             '<span class="md-topbar-links">',
             '<a href="https://www.instagram.com/maharaja_decor/" target="_blank" rel="noopener">' + icon('fa-instagram') + '@maharaja_decor</a>',
-            '<a href="https://wa.me/5561991334423" target="_blank" rel="noopener">' + icon('fa-whatsapp') + '(61) 99133-4423</a>',
+            '<a href="https://wa.me/5561991458998" target="_blank" rel="noopener">' + icon('fa-whatsapp') + '(61) 99145-8998</a>',
             '</span>',
             '</div>'
         ].join('');
