@@ -76,10 +76,15 @@
         el.textContent = message || '';
     }
 
+    function submitLabel() {
+        var total = byId('summaryTotal').textContent;
+        return total && total !== '—' ? 'Finalizar pedido — ' + total : 'Finalizar pedido';
+    }
+
     function setBusy(busy, label) {
         var button = byId('checkoutSubmit');
         button.disabled = busy;
-        button.textContent = busy ? (label || 'Processando...') : 'Finalizar pedido';
+        byId('checkoutSubmitLabel').textContent = busy ? (label || 'Processando...') : submitLabel();
     }
 
     function selectedShippingOption() {
@@ -111,13 +116,12 @@
         var subtotal = itemsSubtotal();
         var total = subtotal + freight;
 
-        byId('summaryItem').textContent = items.length === 1
-            ? items[0].quantity + ' × ' + (items[0].product_title || items[0].title)
-            : count + ' peças';
+        byId('summaryItem').textContent = 'Subtotal · ' + (count === 1 ? '1 peça' : count + ' peças');
         byId('summaryItemPrice').textContent = money(subtotal);
         byId('summaryShipping').textContent = shipping ? shipping.name : 'Escolha a entrega';
         byId('summaryShippingPrice').textContent = shipping ? (freight === 0 ? 'Grátis' : money(freight)) : '—';
         byId('summaryTotal').textContent = money(total);
+        byId('checkoutSubmitLabel').textContent = submitLabel();
     }
 
     function renderShippingOptions() {
@@ -335,6 +339,28 @@
 
     // ---- init ---------------------------------------------------------------
 
+    // CEP → city/UF auto-fill via ViaCEP (standard Brazilian address lookup).
+    function setupCepAutofill() {
+        var cepField = byId('fieldCep');
+        if (!cepField) return;
+        cepField.addEventListener('blur', function () {
+            var digits = cepField.value.replace(/\D/g, '');
+            if (digits.length !== 8) return;
+            fetch('https://viacep.com.br/ws/' + digits + '/json/')
+                .then(function (r) { return r.json(); })
+                .then(function (data) {
+                    if (data.erro) return;
+                    if (data.localidade && !byId('fieldCity').value) byId('fieldCity').value = data.localidade;
+                    if (data.uf && !byId('fieldUf').value) byId('fieldUf').value = data.uf;
+                    if (data.logradouro && !byId('fieldStreet').value) {
+                        byId('fieldStreet').value = data.logradouro;
+                        byId('fieldStreet').focus();
+                    }
+                })
+                .catch(function () { /* lookup is a convenience — typing still works */ });
+        });
+    }
+
     // Cart mode: reuse the shared shopping cart built up by cart.js.
     function loadExistingCart() {
         var id = null;
@@ -390,6 +416,10 @@
             byId('checkoutLoading').hidden = true;
             byId('checkoutLayout').hidden = false;
             byId('checkoutForm').addEventListener('submit', submit);
+            setupCepAutofill();
+            // Cart mode gets a way back to edit the cart.
+            var back = byId('checkoutBack');
+            if (back && !slug) back.hidden = false;
         }).catch(function (error) {
             if (error && error.message === 'EMPTY_CART') {
                 window.location.replace('carrinho.html');

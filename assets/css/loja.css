@@ -40,6 +40,52 @@
     color: var(--md-ivory);
 }
 
+/* Primary CTAs span their column — stronger hierarchy, no hugging text. */
+#checkoutSubmit,
+#carrinhoCheckout {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.md-checkout-trust {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 12px 0 0;
+    font-size: 0.78rem;
+    color: var(--md-ink-muted);
+    text-align: center;
+}
+
+.md-checkout-trust i {
+    color: var(--md-jade);
+}
+
+.md-carrinho-continue {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.md-checkout-summary .md-peca-note {
+    margin-top: 16px;
+}
+
+.md-checkout-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--md-green-soft);
+}
+
+.md-checkout-back:hover {
+    color: var(--md-green-deep);
+    text-decoration: underline;
+}
+
 .md-loja-toolbar {
     display: flex;
     flex-wrap: wrap;

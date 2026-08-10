@@ -82,13 +82,15 @@
                                 <legend>Pagamento</legend>
                                 <div id="paymentOptions" class="md-checkout-choices"></div>
                             </fieldset>
-                            <button id="checkoutSubmit" class="btn md-btn" type="submit">Finalizar pedido</button>
+                            <button id="checkoutSubmit" class="btn md-btn" type="submit"><i class="fas fa-lock" aria-hidden="true"></i> <span id="checkoutSubmitLabel">Finalizar pedido</span></button>
+                            <p class="md-checkout-trust"><i class="fas fa-shield-alt" aria-hidden="true"></i> Compra segura · Pix, cartão e boleto na página do Mercado Pago</p>
+                            <a id="checkoutBack" class="md-checkout-back" href="carrinho.html" hidden><i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar ao carrinho</a>
                         </form>
                         <aside class="md-checkout-summary">
                             <h2>Resumo</h2>
                             <div id="checkoutProduct" class="md-checkout-product"></div>
                             <dl>
-                                <div><dt id="summaryItem">Peça</dt><dd id="summaryItemPrice">—</dd></div>
+                                <div><dt id="summaryItem">Subtotal</dt><dd id="summaryItemPrice">—</dd></div>
                                 <div><dt id="summaryShipping">Entrega</dt><dd id="summaryShippingPrice">—</dd></div>
                                 <div class="md-checkout-total"><dt>Total</dt><dd id="summaryTotal">—</dd></div>
                             </dl>
